@@ -1,1 +1,38 @@
+import numpy as np
+import pandas as pd
+
+# Define states (using standardized or preprocessed data from earlier)
+states = df[['Customer_Age', 'Months_on_book', 'Total_Trans_Amt_Log', 'Total_Ct_Chng_Q4_Q1', 'Avg_Utilization_Ratio']].values
+
+# Define action space: email, push notification, wait
+actions = ['email', 'push', 'wait']
+
+# Initialize Q-Table (number of states x number of actions)
+q_table = np.zeros((len(states), len(actions)))
+
+# Define hyperparameters
+alpha = 0.1  # Learning rate
+gamma = 0.9  # Discount factor
+epsilon = 0.1  # Exploration-exploitation trade-off
+
+# Simulate a simple Q-learning update
+for episode in range(1000):
+    # Randomly choose an initial state
+    state_idx = np.random.randint(0, len(states))
+    state = states[state_idx]
+
+    # Choose action based on epsilon-greedy
+    if np.random.uniform(0, 1) < epsilon:
+        action_idx = np.random.randint(0, len(actions))  # Explore
+    else:
+        action_idx = np.argmax(q_table[state_idx])  # Exploit
+
+    # Assume we take action and get a reward from the environment (based on simulated interaction)
+    reward = simulate_environment(state, actions[action_idx])
+
+    # Update Q-value for the state-action pair
+    next_state_idx = np.random.randint(0, len(states))  # Randomly simulate the next state
+    q_table[state_idx, action_idx] = q_table[state_idx, action_idx] + alpha * (
+        reward + gamma * np.max(q_table[next_state_idx]) - q_table[state_idx, action_idx]
+    )
 
