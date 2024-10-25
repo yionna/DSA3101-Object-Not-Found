@@ -40,62 +40,58 @@ for episode in range(1000):
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
-states = df[['Customer_Age', 'Months_on_book', 'Total_Trans_Amt_Log', 'Total_Ct_Chng_Q4_Q1', 'Avg_Utilization_Ratio']].values
-actions = ['email', 'push', 'wait']
-
-
-q_table = np.random.rand(len(states), len(actions))
-
-# Function to visualize the Q-table using a heatmap
-def visualize_q_table(q_table, states, actions):
+# Function to visualize the Q-table
+def plot_q_table(q_table, actions, title="Q-Table Heatmap"):
     plt.figure(figsize=(12, 8))
-    sns.heatmap(q_table, annot=True, cmap="YlGnBu", xticklabels=actions, yticklabels=np.arange(len(states)))
+    sns.heatmap(q_table, annot=True, cmap="viridis", xticklabels=actions, yticklabels=range(len(q_table)))
     plt.xlabel("Actions")
     plt.ylabel("States")
-    plt.title("Q-Table Heatmap")
+    plt.title(title)
     plt.show()
 
-# Function to simulate and visualize an agent's decision-making process
-def simulate_agent(q_table, states, actions, num_steps=10):
-    current_state_idx = np.random.randint(0, len(states))  # Start from a random state
-    path = [current_state_idx]
-    rewards = []
+# Visualize the initial Q-table
+plot_q_table(q_table, actions, title="Q-Table Heatmap (Before Learning)")
 
-    for _ in range(num_steps):
-        # Choose the best action based on Q-table
-        action_idx = np.argmax(q_table[current_state_idx])
-        # Get reward for the action (simulated environment reward)
-        reward = simulate_environment(states[current_state_idx], actions[action_idx])
-        rewards.append(reward)
+# Run the Q-learning algorithm (continued from above)
+for episode in range(1000, 2000):
+    # Randomly choose an initial state
+    state_idx = np.random.randint(0, len(states))
+    state = states[state_idx]
 
-        # Randomly simulate the next state (for simplicity)
-        next_state_idx = np.random.randint(0, len(states))
-        path.append(next_state_idx)
+    # Choose action based on epsilon-greedy
+    if np.random.uniform(0, 1) < epsilon:
+        action_idx = np.random.randint(0, len(actions))  # Explore
+    else:
+        action_idx = np.argmax(q_table[state_idx])  # Exploit
 
-        # Update the current state
-        current_state_idx = next_state_idx
+    # Assume we take action and get a reward from the environment (based on simulated interaction)
+    reward = simulate_environment(state, actions[action_idx])
 
-    # Plot the decision path
-    plt.figure(figsize=(12, 8))
-    plt.plot(range(len(path)), path, marker='o', linestyle='-', color='b', label='State Transition')
-    plt.scatter(range(len(path)), path, c=rewards, cmap='viridis', edgecolor='k', s=100)
-    plt.colorbar(label='Reward')
-    plt.xlabel("Step")
-    plt.ylabel("State Index")
-    plt.title("Agent's Decision-Making Path")
-    plt.legend()
+    # Update Q-value for the state-action pair
+    next_state_idx = np.random.randint(0, len(states))  # Randomly simulate the next state
+    q_table[state_idx, action_idx] = q_table[state_idx, action_idx] + alpha * (
+        reward + gamma * np.max(q_table[next_state_idx]) - q_table[state_idx, action_idx]
+    )
+
+# Visualize the Q-table after learning
+plot_q_table(q_table, actions, title="Q-Table Heatmap (After Learning)")
+
+# Optional: Create a function to simulate and plot decision-making for a specific customer
+def simulate_decision_making(q_table, actions, customer_idx):
+    state = states[customer_idx]
+    state_idx = customer_idx
+    best_action_idx = np.argmax(q_table[state_idx])
+    best_action = actions[best_action_idx]
+    
+    print(f"Recommended action for customer {customer_idx}: {best_action}")
+
+    # Visualize the Q-values for the selected state
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x=actions, y=q_table[state_idx], palette="viridis")
+    plt.title(f"Q-Values for Customer {customer_idx} (State {state_idx})")
+    plt.xlabel("Actions")
+    plt.ylabel("Q-Value")
     plt.show()
 
-# Assuming we have a function simulate_environment that returns a reward
-def simulate_environment(state, action):
-    # This is a placeholder function for demonstration purposes
-    # In a real environment, this would interact with the actual environment
-    return np.random.rand()
-
-# Visualize the Q-table
-visualize_q_table(q_table, states, actions)
-
-# Simulate and visualize the agent's decision-making process
-simulate_agent(q_table, states, actions, num_steps=20)
-
+# Test the decision-making visualization for a specific customer (e.g., customer 0)
+simulate_decision_making(q_table, actions, customer_idx=0)
