@@ -36,3 +36,66 @@ for episode in range(1000):
         reward + gamma * np.max(q_table[next_state_idx]) - q_table[state_idx, action_idx]
     )
 
+#visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+states = df[['Customer_Age', 'Months_on_book', 'Total_Trans_Amt_Log', 'Total_Ct_Chng_Q4_Q1', 'Avg_Utilization_Ratio']].values
+actions = ['email', 'push', 'wait']
+
+
+q_table = np.random.rand(len(states), len(actions))
+
+# Function to visualize the Q-table using a heatmap
+def visualize_q_table(q_table, states, actions):
+    plt.figure(figsize=(12, 8))
+    sns.heatmap(q_table, annot=True, cmap="YlGnBu", xticklabels=actions, yticklabels=np.arange(len(states)))
+    plt.xlabel("Actions")
+    plt.ylabel("States")
+    plt.title("Q-Table Heatmap")
+    plt.show()
+
+# Function to simulate and visualize an agent's decision-making process
+def simulate_agent(q_table, states, actions, num_steps=10):
+    current_state_idx = np.random.randint(0, len(states))  # Start from a random state
+    path = [current_state_idx]
+    rewards = []
+
+    for _ in range(num_steps):
+        # Choose the best action based on Q-table
+        action_idx = np.argmax(q_table[current_state_idx])
+        # Get reward for the action (simulated environment reward)
+        reward = simulate_environment(states[current_state_idx], actions[action_idx])
+        rewards.append(reward)
+
+        # Randomly simulate the next state (for simplicity)
+        next_state_idx = np.random.randint(0, len(states))
+        path.append(next_state_idx)
+
+        # Update the current state
+        current_state_idx = next_state_idx
+
+    # Plot the decision path
+    plt.figure(figsize=(12, 8))
+    plt.plot(range(len(path)), path, marker='o', linestyle='-', color='b', label='State Transition')
+    plt.scatter(range(len(path)), path, c=rewards, cmap='viridis', edgecolor='k', s=100)
+    plt.colorbar(label='Reward')
+    plt.xlabel("Step")
+    plt.ylabel("State Index")
+    plt.title("Agent's Decision-Making Path")
+    plt.legend()
+    plt.show()
+
+# Assuming we have a function simulate_environment that returns a reward
+def simulate_environment(state, action):
+    # This is a placeholder function for demonstration purposes
+    # In a real environment, this would interact with the actual environment
+    return np.random.rand()
+
+# Visualize the Q-table
+visualize_q_table(q_table, states, actions)
+
+# Simulate and visualize the agent's decision-making process
+simulate_agent(q_table, states, actions, num_steps=20)
+
