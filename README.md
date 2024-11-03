@@ -20,6 +20,25 @@ There will be a lack of personalisation as customers will receive generic, one-s
 - Docker
 - Other dependencies listed in ´requirements.txt´
 
+1) run `data_cleaning.ipynb` using `BankChurners.csv` (our original dataset) to get `BankChurners_cleaned.csv`
+2) run 'data_analysis.ipynb` to get the exploratory data analysis of the original cleaned dataset
+
+#### For Subgroup A:
+##### Data synthesis
+1) run `botswana_bank.ipynb` in `data synthesis/botswana_bank.ipynb` using `botswana_bank_customer_churn.csv` to add `Credit Score`, `Outstanding Loans` and `Balance` to the original cleaned dataset --> `temp4.csv`
+2) run `User_churn.ipynb` in `data synthesis/User_churn.ipynb` using `User churn.csv` to generate data for digital engagement, then combining this data with `temp4.csv` --> `original.csv`
+3) run `Credit_Score.ipynb` in `data synthesis/Credit_Score.ipynb` using `credit_score.csv` to add `Savings` (savings outside the bank) to the original cleaned dataset --> `original (2).csv`
+4) run `Campaign_data.ipynb` in `data synthesis/Campaign_data.ipynb` using `campaign_data.csv` to add `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome` to `original (2).csv` --> `original (3).csv`
+
+#### Questions
+Question 1: run `qn1.ipynb` in `group tasks/Subgroup A/qn1.ipynb` using `original.csv` to get `original (4).csv`<br>
+Question 2: run `qn2.ipynb` in `group tasks/Subgroup A/qn2.ipynb` where `original (3).csv` and `original (4).csv` merge to get `original (5).csv`<br>
+Question 3: <br>
+
+Bonus tasks:<br>
+Question 2:<br>
+Question 3: run 'qn3 (bonus).ipynb` in `group tasks/Subgroup A/qn3 (bonus).ipynb` using `original (5).csv`<br>
+
 ### Environment setup
 
 ### Running the code
@@ -27,23 +46,43 @@ There will be a lack of personalisation as customers will receive generic, one-s
 ## Repository structure
 ```
 personalized-marketing-bank/
-├──                         # Modular Python scripts for data cleaning, analysis, modelling, and visualization
-├── main.py                 # Orchestrates the entire data pipeline and analysis process
-├── config.py               # For all configuration parameters
-├── utils.py                # For utility functions used across multiple scripts
-├──                         # SQL scripts for data extraction and transformation
-├──                         # Simple API (using Flask or FastAPI) to serve model predictions and key insights
-├── requirements.txt        # All dependencies
-├──                         # For all functions, classes, and modules
-├──                         # Dockerfile to containerize the application
-├── data/                   # Contains raw and preprocessed data files
-│   ├── 
-│   ├── 
-│   ├── 
-│   └── 
-├── src/                    # Source code for the application
+├── data_cleaning.ipynb                      # Cleaning the original dataset
+├── data_analysis.ipynb                      # Exploratory data analysis
+├── data synthesis/                          # Adding columns to data
+│   ├── botswana_bank.ipynb                  
+│   ├── User_churn.ipynb
+│   ├── Credit_score.ipynb
+│   ├── Campaign_data.ipynb
 │   └──
-└── README.md               # Project documentation
+├── main.py                                  # Orchestrates the entire data pipeline and analysis process
+├── config.py                                # For all configuration parameters
+├── utils.py                                 # For utility functions used across multiple scripts
+├──                                          # SQL scripts for data extraction and transformation
+├──                                          # Simple API (using Flask or FastAPI) to serve model predictions and key insights
+├── requirements.txt                         # All dependencies
+├──                                          # For all functions, classes, and modules
+├──                                          # Dockerfile to containerize the application
+├── data/                                    # Contains raw and preprocessed data files
+│   ├── BankChurners.csv                     # Main dataset
+│   ├── botswana_bank_customer_churn.csv     # For `Credit Score`, `Outstanding Loans` and `Balance`
+│   ├── User churn.csv                       # For data for digital engagement
+│   ├── credit_score.csv                     # For `Savings`
+│   ├── campaign_data.csv                    # For `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome`
+│   └── 
+├── group tasks/
+│   ├── Subgroup A
+│   │   ├── qn1.ipynb
+│   │   ├── qn2.ipynb
+│   │   ├──
+│   │   ├──
+│   │   └── qn3 (bonus).ipynb
+│   └── Subgroup B
+│   │   ├── 
+│   │   ├── 
+│   │   ├──
+│   │   ├──
+│   │   └── 
+└── README.md                                # Project documentation
 ```
 
 ## Data sources and any necessary data preparation steps
@@ -64,11 +103,11 @@ personalized-marketing-bank/
 
 ### Endpoints
 
-### Request/Response fomrats
+### Request/Response formats
 
 ### Data Dictionary
 
-#### 1) Data Dictionary for Ori Dataset
+#### 1) Data Dictionary from original Dataset
 | Variable               | Data Type   | Description                                            | Example Value        |
 |------------------------|-------------|--------------------------------------------------------|-----------------------|
 | CLIENTNUM              | Integer     | Unique identifier for each customer                    | 768805383            |
