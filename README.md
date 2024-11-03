@@ -20,11 +20,12 @@ There will be a lack of personalisation as customers will receive generic, one-s
 - Docker
 - Other dependencies listed in ´requirements.txt´
 
+### Data preparation
 1) run `data_cleaning.ipynb` using `BankChurners.csv` (our original dataset) to get `BankChurners_cleaned.csv`
 2) run 'data_analysis.ipynb` to get the exploratory data analysis of the original cleaned dataset
 
-#### For Subgroup A:
-##### Data synthesis
+### For Subgroup A:
+#### Data synthesis
 1) run `botswana_bank.ipynb` in `data synthesis/botswana_bank.ipynb` using `botswana_bank_customer_churn.csv` to add `Credit Score`, `Outstanding Loans` and `Balance` to the original cleaned dataset --> `temp4.csv`
 2) run `User_churn.ipynb` in `data synthesis/User_churn.ipynb` using `User churn.csv` to generate data for digital engagement, then combining this data with `temp4.csv` --> `original.csv`
 3) run `Credit_Score.ipynb` in `data synthesis/Credit_Score.ipynb` using `credit_score.csv` to add `Savings` (savings outside the bank) to the original cleaned dataset --> `original (2).csv`
@@ -39,9 +40,6 @@ Bonus tasks:<br>
 Question 2:<br>
 Question 3: run 'qn3 (bonus).ipynb` in `group tasks/Subgroup A/qn3 (bonus).ipynb` using `original (5).csv`<br>
 
-### Environment setup
-
-### Running the code
 
 ## Repository structure
 ```
