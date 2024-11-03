@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Prediction</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Model Prediction</h1>
+    <form method="POST" action="/predict">
+        <label for="question">Enter subgroup and question (eg. BQ1):</label>
+        <input type="text" id="question" name="question" required>
+        <label for="clientnum">Enter CLIENTNUM:</label>
+        <input type="text" id="clientnum" name="clientnum" required>
+        <input type="submit" value="Predict">
+    </form>
+    
+    {% if insights %}
+    <h2>Insights for CLIENTNUM: {{ insights['CLIENTNUM'] }}</h2>
+    <table>
+        <tr>
+            <th>CLIENTNUM</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+            <th>G</th>
+        </tr>
+        <tr>
+            <td>{{ insights['prediction']['CLIENTNUM'] }}</td>
+            <td>{{ insights['prediction']['A'] }}</td>
+            <td>{{ insights['prediction']['B'] }}</td>
+            <td>{{ insights['prediction']['C'] }}</td>
+            <td>{{ insights['prediction']['D'] }}</td>
+            <td>{{ insights['prediction']['E'] }}</td>
+            <td>{{ insights['prediction']['F'] }}</td>
+            <td>{{ insights['prediction']['G'] }}</td>            
+        </tr>
+    </table>
+    {% elif error %}
+    <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
+
