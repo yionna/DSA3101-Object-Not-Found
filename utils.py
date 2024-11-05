@@ -1,4 +1,4 @@
-# for generation of campaign data
+## Generation of campaign data
 def generate_synthetic_features_campaign(df, distribution, feature):
     synthetic_feature = []
     
@@ -34,3 +34,13 @@ def generate_synthetic_outcome(df, distribution):
     return synthetic_outcome
 
 
+## Data cleaning of BankChurners,csv
+# this function will remove the k,$ and + sign in the income category column of BankChurners.csv
+def clean_col(x):
+        if 'K' in x:
+            return x.replace('K','').replace('$','')
+        elif '+' in x:
+            return x.replace('+','')
+        elif x =='Less than 40':
+            return x.split()[2]
+        return x
