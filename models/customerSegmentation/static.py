@@ -139,7 +139,7 @@ class CustomerSegmentation:
         # Assign segment based on loyalty and financial status
         self.df['Segment'] = self.df.apply(self.assign_segment, axis=1)
 
-        return self.df[['Segment', 'Digital_Capability']]
+        return self.df[['CLIENTNUM','Loyalty','Financial_Status','Segment', 'Digital_Capability']]
 
     def predict(self, new_data):
         # Apply segmentation logic to new data
@@ -151,4 +151,4 @@ class CustomerSegmentation:
         self.calculate_final_percentiles()
 
         new_data['Segment'] = new_data.apply(self.assign_segment, axis=1)
-        return new_data[['Segment', 'Digital_Capability']]
+        return new_data[['CLIENTNUM','Loyalty','Financial_Status','Segment', 'Digital_Capability']]
