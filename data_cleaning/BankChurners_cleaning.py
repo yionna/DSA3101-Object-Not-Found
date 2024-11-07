@@ -22,12 +22,6 @@ original = pd.read_csv("../data/raw/BankChurners.csv")
 
 # removing irrelevent columns
 original = original.drop(original.columns[[-1, -2]], axis=1)
-original = original.drop(columns=['Avg_Open_To_Buy','Total_Amt_Chng_Q4_Q1','Contacts_Count_12_mon','Total_Ct_Chng_Q4_Q1'])
-
-# renaming the datasets
-original = original.rename(columns={'Months_on_book' : 'Month_with_bank',
-                                    'Total_Relationship_Count' : 'No_of_product',
-                                    'Total_Trans_Ct' : 'Total_Trans_Count'})
 
 # removing Na from the dataset
 original_Unknown = original[original.isin(['Unknown']).any(axis=1)] # someone handle the unknown please
