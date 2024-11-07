@@ -26,14 +26,13 @@ There will be a lack of personalisation as customers will receive generic, one-s
 
 ### For Subgroup A:
 #### Data synthesis
-1) run `botswana_bank.ipynb` in `data synthesis/botswana_bank.ipynb` using `botswana_bank_customer_churn.csv` to add `Credit Score`, `Outstanding Loans` and `Balance` to the original cleaned dataset --> `temp4.csv`
-2) run `User_churn.ipynb` in `data synthesis/User_churn.ipynb` using `User churn.csv` to generate data for digital engagement, then combining this data with `temp4.csv` --> `original.csv`
-3) run `Credit_Score.ipynb` in `data synthesis/Credit_Score.ipynb` using `credit_score.csv` to add `Savings` (savings outside the bank) to the original cleaned dataset --> `original (2).csv`
-4) run `Campaign_data.ipynb` in `data synthesis/Campaign_data.ipynb` using `campaign_data.csv` to add `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome` to `original (2).csv` --> `original (3).csv`
+1) run `banking_behaviour_preference.ipynb` in `data synthesis/banking_behaviour_preference.ipynb` to get `processed/banking_behaviour_preference.csv`
+2) run `Credit_Score.ipynb` in `data synthesis/Credit_Score.ipynb` using `credit_score.csv` to add `Savings` (savings outside the bank) to the original cleaned dataset --> `original (2).csv`
+3) run `Campaign_data.ipynb` in `data synthesis/Campaign_data.ipynb` using `campaign_data.csv` to add `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome` to `original (2).csv` --> `original (3).csv`
 
 #### Questions
-Question 1: run `qn1.ipynb` in `group tasks/Subgroup A/qn1.ipynb` using `original.csv` to get `original (4).csv`<br>
-Question 2: run `qn2.ipynb` in `group tasks/Subgroup A/qn2.ipynb` where `original (3).csv` and `original (4).csv` merge to get `original (5).csv`<br>
+Question 1: run `qn1.ipynb` in `group tasks/Subgroup A/qn1.ipynb` using `processed/banking_behaviour_preference.csv` to get `segementation_result_static.csv`<br>
+Question 2: run `qn2.ipynb` in `group tasks/Subgroup A/qn2.ipynb` where `original (3).csv` and `banking_behaviour_preference.csv` merge to get `original (5).csv`<br>
 Question 3: <br>
 
 Bonus tasks:<br>
@@ -47,8 +46,7 @@ personalized-marketing-bank/
 ├── data_cleaning.ipynb                      # Cleaning the original dataset
 ├── data_analysis.ipynb                      # Exploratory data analysis
 ├── data synthesis/                          # Adding columns to data
-│   ├── botswana_bank.ipynb                  
-│   ├── User_churn.ipynb
+│   ├── banking_behaviour_preference.ipynb
 │   ├── Credit_score.ipynb
 │   ├── Campaign_data.ipynb
 │   └──
