@@ -1,4 +1,9 @@
-def model_train_test(df, clusters):
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier
+
+
+def model_train_test(df, cols, product_list, clusters):
     training_features = {key: {} for key in clusters.keys()}
     predicted_labels = {key: {} for key in clusters.keys()}
     actual_labels = {key: {} for key in clusters.keys()}
