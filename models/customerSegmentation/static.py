@@ -1,6 +1,22 @@
 import pandas as pd
 import numpy as np
 
+"""
+static.py
+
+This module provides classes for static customer segmentation. It enables segmentation 
+of customers based on predefined metrics such as loyalty, financial status, and 
+digital capability, using a consistent dataset that is not continuously updated. 
+The segmentation logic uses calculated percentiles to categorize customers 
+into different segments based on their behavior and financial indicators.
+
+Classes:
+--------
+- `CustomerSegmentation`: 
+  - Manages the entire segmentation process, from calculating percentiles for key 
+    metrics to assigning segments based on predefined rules.
+"""
+
 class CustomerSegmentation:
     """
     A class for performing customer segmentation based on financial status and loyalty metrics.
