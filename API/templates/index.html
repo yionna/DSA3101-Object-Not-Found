@@ -34,24 +34,14 @@
     <h2>Insights for CLIENTNUM: {{ insights['CLIENTNUM'] }}</h2>
     <table>
         <tr>
-            <th>CLIENTNUM</th>
-            <th>A</th>
-            <th>B</th>
-            <th>C</th>
-            <th>D</th>
-            <th>E</th>
-            <th>F</th>
-            <th>G</th>
+            {% for key in insights['headers'] %}
+                <th>{{ key }}</th>
+            {% endfor %}
         </tr>
         <tr>
-            <td>{{ insights['prediction']['CLIENTNUM'] }}</td>
-            <td>{{ insights['prediction']['A'] }}</td>
-            <td>{{ insights['prediction']['B'] }}</td>
-            <td>{{ insights['prediction']['C'] }}</td>
-            <td>{{ insights['prediction']['D'] }}</td>
-            <td>{{ insights['prediction']['E'] }}</td>
-            <td>{{ insights['prediction']['F'] }}</td>
-            <td>{{ insights['prediction']['G'] }}</td>            
+            {% for key in insights['prediction'].values() %}
+                <td>{{ key }}</td>
+            {% endfor %}               
         </tr>
     </table>
     {% elif error %}

@@ -1,4 +1,4 @@
-# for generation of campaign data
+## Generation of campaign data
 def generate_synthetic_features_campaign(df, distribution, feature):
     synthetic_feature = []
     
@@ -32,5 +32,4 @@ def generate_synthetic_outcome(df, distribution):
         synthetic_outcome.append(sample)
     
     return synthetic_outcome
-
 

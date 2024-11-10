@@ -13,10 +13,8 @@ def index():
 def predict():
     question_csv = request.form.get('question')
     clientnum = request.form.get('clientnum')
-    print(question_csv)
 
-    predictions = pd.read_csv(f'predictions/{question_csv}')
-    # Check if CLIENTNUM exists in the prediction data
+    predictions = pd.read_csv(f'../data/predictions/{question_csv}')
     client_data = predictions[predictions['CLIENTNUM'] == int(clientnum)]
     
     if client_data.empty:
@@ -24,6 +22,7 @@ def predict():
 
     insights = {
         "CLIENTNUM": clientnum,
+        "headers": list(predictions.columns),
         "prediction": client_data.to_dict(orient='records')[0],
         "insights": None
     }
