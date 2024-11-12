@@ -72,11 +72,8 @@ import pandas as pd
 import numpy as np
 from pandas.api.types import is_object_dtype
 
-# Load customer data
-df = pd.read_csv('data/BankChurners_cleaned.csv')
-
-# Load segmentation data
-segmentation = pd.read_csv('data/segmentation_result_static.csv')
+df = pd.read_csv("../../data/processed/bq1_dataset.csv")
+segmentation = pd.read_csv("../../data/processed/segmentation_result_static.csv")
 
 # Merge customer data with segmentation data
 df1 = df.set_index('CLIENTNUM').join(segmentation.set_index('CLIENTNUM'), on='CLIENTNUM', how='inner').reset_index()
