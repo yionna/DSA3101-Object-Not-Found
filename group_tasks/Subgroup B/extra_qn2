@@ -1,0 +1,22 @@
+import pandas as pd
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import torch
+from sklearn.model_selection import train_test_split
+# Load customer data
+customer_data = pd.read_csv('customer_data.csv')
+
+# Sample customer data
+# customer_data = pd.DataFrame({
+#     'CustomerID': [1, 2, 3],
+#     'Name': ['Alice', 'Bob', 'Charlie'],
+#     'Age': [28, 34, 45],
+#     'Gender': ['Female', 'Male', 'Male'],
+#     'Interests': ['Fitness, Health', 'Technology, Gadgets', 'Travel, Photography']
+# })
+
+# Combine relevant features into a personalized prompt
+def create_prompt(row):
+    prompt = f"Create a marketing message for a {row['Age']} year old {row['Gender']} interested in {row['Interests']}."
+    return prompt
+
+customer_data['Prompt'] = customer_data.apply(create_prompt, axis=1)
