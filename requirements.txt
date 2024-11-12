@@ -11,5 +11,6 @@ numpy == 1.25.1
 matplotlib-base == 3.7.1
 matplotlib-inline == 0.1.6  
 seaborn == 0.12.2
+sdv == 1.17.0
 
 ## please add pip install -r requirements.txt to all the files
