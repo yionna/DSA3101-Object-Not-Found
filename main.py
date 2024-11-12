@@ -1,6 +1,5 @@
 import pandas as pd
 from models.customerSegmentation.static import *
-from models.customerSegmentation.CustomerDataGenerator import *
 
 # Importing data
 base_df = pd.read_csv("data/processed/BankChurners_more.csv")
