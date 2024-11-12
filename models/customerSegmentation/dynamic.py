@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+
 """
 dynamic.py
 
@@ -41,93 +41,60 @@ full_data_with_segments = dynamic_segmentation.get_full_original_with_segment()
 """
 class DataManager:
     """
-    DataManager is responsible for managing customer data updates, including
-    adding new records, updating existing records, and handling customer churn.
-    This class serves as the primary interface for modifying and retrieving
-    the current state of customer data, keeping it up-to-date for subsequent
-    analysis and segmentation.
-
-    Attributes:
-    -----------
-    df : pandas.DataFrame
-        A DataFrame that holds the initial customer data, including key attributes 
-        required for segmentation and analysis.
-
-    Methods:
-    --------
-    add_data(new_data):
-        Updates the existing dataset by adding new entries, updating existing records,
-        and removing churned customers as indicated by the new data. Each entry is
-        timestamped to reflect the latest update.
-
-    get():
-        Retrieves the current state of the managed customer dataset after updates,
-        with churned customers removed and new data incorporated.
+    Manages the customer dataset by updating, adding, and removing records based on churn status.
     """
     def __init__(self, df):
+        """
+        Initialize DataManager with an initial dataset.
+        
+        Parameters:
+        -----------
+        df : pd.DataFrame
+            Initial customer dataset.
+        """
         self.df = df.copy()
 
     def add_data(self, new_data):
         """
-        Update the current dataset by incorporating new customer data, updating
-        existing records, and removing records for churned customers.
-
+        Update the dataset by adding new data, updating existing records, 
+        and removing records for churned customers.
+        
         Parameters:
         -----------
-        new_data : pandas.DataFrame
-            A DataFrame containing the new data to be added or updated. Includes
-            a 'CLIENTNUM' identifier, a 'Churned' column to indicate churn status,
-            and a 'Time' column to timestamp the updates.
-
-        Operations:
-        -----------
-        - Sets a timestamp (Friday) on new entries.
-        - Removes records where 'Churned' is marked as 1.
-        - Updates records where 'CLIENTNUM' exists in both current and new datasets.
-        - Appends records for new customers.
-        - Ensures 'Time' is placed directly after 'CLIENTNUM' for clarity.
-
-        Returns:
-        --------
-        None
+        new_data : pd.DataFrame
+            DataFrame containing new data to be incorporated.
+        
+        Raises:
+        -------
+        KeyError
+            If `CLIENTNUM` column is missing from new_data.
         """
-        # Set current date (Friday) for new entries
-        current_time = pd.to_datetime('now').normalize()  # Set current time to the day, ignoring seconds
-        new_data['Time'] = current_time  # Apply current date
-
-        # Set CLIENTNUM as index for easy merging
-        new_data.set_index('CLIENTNUM', inplace=True)
-
-        # Remove churned customers from the current DataFrame
-        churned_customers = new_data[new_data['Churned'] == 1].index
-        self.df = self.df[~self.df['CLIENTNUM'].isin(churned_customers)]  # Remove churned customers
-
-        # Set CLIENTNUM as index for the current dataframe
+        if 'CLIENTNUM' not in new_data.columns:
+            raise KeyError("CLIENTNUM column missing in new_data.")
+        
+        # Remove churned customers in new_data
+        self.df = self.df[~self.df['CLIENTNUM'].isin(new_data[new_data['Churned'] == 1]['CLIENTNUM'])]
+        
+        new_data = new_data[new_data['Churned'] == 0].drop_duplicates(subset='CLIENTNUM')
+        
+        # Update existing records
         self.df.set_index('CLIENTNUM', inplace=True)
+        new_data.set_index('CLIENTNUM', inplace=True)
+        self.df.update(new_data)
         
-        # Update existing records, ignoring churned customers
-        self.df.update(new_data[new_data['Churned'] == 0])  
-        
-        # Append new records that don't exist in the current dataframe
-        self.df = self.df.combine_first(new_data[new_data['Churned'] == 0])  
-
-        # Reset index to return CLIENTNUM as a column
+        # Append new records
+        new_clients = new_data[~new_data.index.isin(self.df.index)]
+        self.df = pd.concat([self.df, new_clients])
         self.df.reset_index(inplace=True)
-
-        # Reorder columns to ensure 'Time' is right after 'CLIENTNUM'
-        cols = list(self.df.columns)
-        cols.insert(1, cols.pop(cols.index('Time')))  # Move 'Time' to right after 'CLIENTNUM'
-        self.df = self.df[cols]
 
     def get(self):
         """
-        Retrieve the current customer dataset after updates have been applied.
+        Retrieve the updated dataset.
         
         Returns:
         --------
-        pandas.DataFrame
-            The updated customer DataFrame with churned customers removed,
-            new records appended, and 'Time' column organized for readability.
+        pd.DataFrame
+            The updated dataset with all changes applied.
         """
         return self.df
     
@@ -458,81 +425,102 @@ class Segmentation:
 
 class DynamicCustomerSegmentation:
     """
-    The DynamicCustomerSegmentation class orchestrates the end-to-end process of managing, 
-    updating, and segmenting customer data. It integrates data management, percentile 
-    calculation, and segmentation functionality, allowing for real-time updates with each 
-    new data batch. This dynamic approach enables ongoing segmentation based on updated 
-    financial and loyalty metrics.
-
-    Parameters:
-    ----------
-    initial_data : pandas.DataFrame
-        The initial dataset, typically representing the existing customer data,
-        provided to initialize the segmentation model.
-
-    Methods:
-    -------
-    process_new_data(new_data):
-        Updates the dataset with new data, recalculates percentiles, and performs 
-        feature engineering and segmentation. Returns a simplified result containing 
-        CLIENTNUM, SEGMENT, and DIGITAL_CAPABILITY.
-
-    get_full_original_with_segment():
-        Retrieves the complete original dataset with SEGMENT and DIGITAL_CAPABILITY 
-        columns appended, providing a full view of the updated and segmented data.
+    DynamicCustomerSegmentation class orchestrates managing, updating, and segmenting customer data.
+    It integrates data management, percentile calculation, and segmentation functionality, 
+    allowing for real-time updates with each new data batch.
     
-    get_updated_initial_data():
-        Retrieves the updated initial data after all modifications, allowing access 
-        to the most current state of the dataset managed by DataManager.
+    Attributes:
+    ----------
+    data_manager : DataManager
+        Instance of DataManager for managing the primary customer dataset.
+    percentile_calculator : PercentileCalculator
+        Instance of PercentileCalculator for handling percentile calculations.
+    segmentation : Segmentation
+        Instance of Segmentation for customer segmentation logic.
+    
+    updated_df : pd.DataFrame
+        The current state of the updated customer data.
+    featured_data : pd.DataFrame
+        DataFrame containing engineered features for segmentation.
+    segmented_result : pd.DataFrame
+        Final segmented data with CLIENTNUM, SEGMENT, and DIGITAL_CAPABILITY.
     """
+    
     def __init__(self, initial_data):
         """
-        Initialize the dynamic cluster segmentation with the initial dataset.
+        Initializes the dynamic segmentation system with the initial dataset.
         
-        :param initial_data: The original dataset, typically the output of DataManager.
+        Parameters:
+        ----------
+        initial_data : pd.DataFrame
+            Initial customer dataset to initialize DataManager and other components.
         """
         self.data_manager = DataManager(initial_data)
+        self.updated_df = self.data_manager.get()  # Store updated data as an attribute
+        self.percentile_calculator = None
+        self.featured_data = None
+        self.segmentation = None
+        self.segmented_result = None
 
     def process_new_data(self, new_data):
         """
-        Process new data through the pipeline.
+        Processes new customer data by updating the dataset, recalculating features, 
+        and performing segmentation. Stores the results as attributes for easy access.
+
+        Parameters:
+        ----------
+        new_data : pd.DataFrame
+            New data batch to integrate with the existing dataset.
         
-        :param new_data: The new batch of data to be processed.
-        :return: A DataFrame with CLIENTNUM, SEGMENT, and DIGITAL_CAPABILITY by default.
+        Updates:
+        --------
+        - self.updated_df : Latest updated data from DataManager.
+        - self.featured_data : DataFrame with calculated features.
+        - self.segmented_result : Segmented data with CLIENTNUM, SEGMENT, DIGITAL_CAPABILITY.
         """
         # Step 1: Update the dataset using DataManager
         self.data_manager.add_data(new_data)
-        updated_df = self.data_manager.get()
-
-        # Step 2: Recalculate percentiles and perform feature engineering using PercentileCalculator
-        percentile_calculator = PercentileCalculator(updated_df)
-        percentile_calculator.calculate_percentiles()
-        featured_data = percentile_calculator.get_featured_data()
-
-        # Step 3: Perform segmentation using Segmentation class
-        segmentation = Segmentation(original_df=updated_df, featured_df=featured_data)
-        segmentation.perform_segmentation()
-
-        # Step 4: Return the segmented result
-        segmented_result = segmentation.get_segment_result()  # Simplified output with CLIENTNUM, SEGMENT, DIGITAL_CAPABILITY
-        return segmented_result
-
-    def get_full_original_with_segment(self):
-        """
-        Get the full original DataFrame with SEGMENT and DIGITAL_CAPABILITY appended.
+        self.updated_df = self.data_manager.get()  # Updated data stored in updated_df
         
-        :return: The original DataFrame with the additional segmentation info.
-        """
-        segmentation = Segmentation(self.data_manager.get(), self.data_manager.get())  # Dummy instance for the getter
-        return segmentation.get_original_with_segment()
+        # Step 2: Calculate percentiles and perform feature engineering
+        self.percentile_calculator = PercentileCalculator(self.updated_df)
+        self.percentile_calculator.calculate_percentiles()
+        self.featured_data = self.percentile_calculator.get_featured_data()
+        
+        # Step 3: Perform segmentation and store the result
+        self.segmentation = Segmentation(original_df=self.updated_df, featured_df=self.featured_data)
+        self.segmentation.perform_segmentation()
+        self.segmented_result = self.segmentation.get_segment_result()  # Simplified output
 
-    def get_updated_initial_data(self):
+    def get_segmented_result(self):
         """
-        Retrieve the updated initial data from DataManager, reflecting any recent changes.
+        Retrieves the latest segmented result.
         
         Returns:
         --------
-        pandas.DataFrame
-            The latest version of the initial dataset after all updates have been applied.
+        pd.DataFrame:
+            The DataFrame containing CLIENTNUM, SEGMENT, and DIGITAL_CAPABILITY.
         """
-        return self.data_manager.get()
+        return self.segmented_result
+
+    def get_full_original_with_segment(self):
+        """
+        Retrieves the full original data with the latest segmentation details appended.
+        
+        Returns:
+        --------
+        pd.DataFrame:
+            Original DataFrame with SEGMENT and DIGITAL_CAPABILITY columns appended.
+        """
+        return self.segmentation.get_original_with_segment()
+
+    def get_updated_initial_data(self):
+        """
+        Directly accesses the latest updated data managed by DataManager.
+        
+        Returns:
+        --------
+        pd.DataFrame:
+            The most current version of the initial dataset after all updates.
+        """
+        return self.updated_df
