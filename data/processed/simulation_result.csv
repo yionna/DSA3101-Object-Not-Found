@@ -1,6 +1,6 @@
-"Moderate or Low Financial status, Moderate or Low Loyalty","High Financial status, Low or Moderate Loyalty","Low Financial status, Low Loyalty","Low or Moderate Financial status, High Loyalty","High Financial status, High Loyalty",Total
-83945,14172,7543,3843,621,110124
-85896,14579,7970,4784,677,113906
-86599,14694,7972,7596,1083,117944
-69068,11798,6506,6135,866,94373
-57506,9862,5516,5176,711,78771
+,"Moderate or Low Financial status, Moderate or Low Loyalty","High Financial status, Low or Moderate Loyalty","Low Financial status, Low Loyalty","Low or Moderate Financial status, High Loyalty","High Financial status, High Loyalty",Total
+Base,83945,14172,7543,3843,621,110124
+Round 1,85908,14557,7953,4758,734,113910
+Round 2,88375,15007,8376,6047,882,118687
+Round 3,87729,14921,8433,6055,874,118012
+Round 4,58583,9893,5547,4029,599,78651
