@@ -480,6 +480,10 @@ class DynamicCustomerSegmentation:
     get_full_original_with_segment():
         Retrieves the complete original dataset with SEGMENT and DIGITAL_CAPABILITY 
         columns appended, providing a full view of the updated and segmented data.
+    
+    get_updated_initial_data():
+        Retrieves the updated initial data after all modifications, allowing access 
+        to the most current state of the dataset managed by DataManager.
     """
     def __init__(self, initial_data):
         """
@@ -522,3 +526,13 @@ class DynamicCustomerSegmentation:
         segmentation = Segmentation(self.data_manager.get(), self.data_manager.get())  # Dummy instance for the getter
         return segmentation.get_original_with_segment()
 
+    def get_updated_initial_data(self):
+        """
+        Retrieve the updated initial data from DataManager, reflecting any recent changes.
+        
+        Returns:
+        --------
+        pandas.DataFrame
+            The latest version of the initial dataset after all updates have been applied.
+        """
+        return self.data_manager.get()
