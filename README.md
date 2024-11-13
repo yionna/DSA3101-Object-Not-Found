@@ -22,7 +22,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 
 ### Data preparation
 1) run `data_cleaning.ipynb` using `BankChurners.csv` (our original dataset) to get `BankChurners_cleaned.csv`
-2) run 'data_analysis.ipynb` to get the exploratory data analysis of the original cleaned dataset
+2) run `data_analysis.ipynb` to get the exploratory data analysis of the original cleaned dataset
 
 ### For Subgroup A:
 #### Data synthesis
@@ -31,13 +31,14 @@ There will be a lack of personalisation as customers will receive generic, one-s
 3) run `Campaign_data.ipynb` in `data synthesis/Campaign_data.ipynb` using `campaign_data.csv` to add `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome` to `original (2).csv` --> `original (3).csv`
 
 #### Questions
-Question 1: run `qn1.ipynb` in `group tasks/Subgroup A/qn1.ipynb` using `processed/banking_behaviour_preference.csv` to get `segementation_result_static.csv`<br>
-Question 2: run `qn2.ipynb` in `group tasks/Subgroup A/qn2.ipynb` where `original (3).csv` and `banking_behaviour_preference.csv` merge to get `original (5).csv`<br>
-Question 3: <br>
+Question 1: run `qn1.ipynb` in `group tasks/Subgroup A/qn1.ipynb` using `processed/banking_behaviour_preference.csv` to get `segementation_result_static.csv`.<br>
+Question 2: run `qn2.ipynb` in `group tasks/Subgroup A/qn2.ipynb` where `original (3).csv` and `banking_behaviour_preference.csv` merge to get `original (5).csv`.<br>
+Question 3: run `qn3.ipynb` in `group tasks/Subgroup A/qn3.ipynb` using `processed/banking_behaviour_preference_original.csv` and `processed/segmentation_result_static_original.csv`.<br>
 
 Bonus tasks:<br>
+Question 1: run `qn1(optional).ipynb` in `group tasks/Subgroup A/qn1(optional).ipynb` using `bank_reviews3.csv`.<br>
 Question 2:<br>
-Question 3: run 'qn3 (bonus).ipynb` in `group tasks/Subgroup A/qn3 (bonus).ipynb` using `original (5).csv`<br>
+Question 3: run `qn3 (bonus).ipynb` in `group tasks/Subgroup A/qn3 (bonus).ipynb` using `original (5).csv`.<br>
 
 
 ## Repository structure
@@ -79,12 +80,17 @@ personalized-marketing-bank/
 - `data/BankChurners.csv`
 - `data/botswana_bank_customer_churn.csv`
 - `data/User churn.csv`
+  link: https://www.kaggle.com/datasets/mikhail1681/user-churn<br>
+  To get the variables that are related to digital engagements.<br>
 - `data/credit_score.csv`<br>
   link: https://www.kaggle.com/datasets/conorsully1/credit-score?resource=download<br>
-  To get the ´Savings´variable that includes savings outside the bank<br>
+  To get the `Savings` variable that includes savings outside the bank.<br>
 - `data/campaign_data.csv`<br>
   link: https://www.kaggle.com/datasets/prakharrathi25/banking-dataset-marketing-targets?select=test.csv<br>
-  The training data is used since it was much larger than the test data (randomly selected rows from training   data).
+  The training data is used since it was much larger than the test data (randomly selected rows from training data).<br>
+- `data/raw/bank_reviews3.csv`<br>
+  link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
+  The data is used as a sample dataset for showcasing the functions of the NLP pipeline.<br>
 
 ## Instructions for building and running the Docker containers
 
