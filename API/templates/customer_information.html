@@ -41,21 +41,25 @@
             
             {% if information %}
             <h2>Insights for CLIENTNUM: {{ information['CLIENTNUM'] }}</h2>
-            <table>
-                <tr>
-                    {% for key in information['headers'] %}
-                        <th>{{ key }}</th>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    {% for value in information['client_data'].values() %}
-                        <td>{{ value }}</td>
-                    {% endfor %}
-                </tr>
-            </table>
+
+            <div class="table-container">
+                <table>
+                    <tr>
+                        {% for key in information['headers'] %}
+                            <th>{{ key }}</th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% for value in information['client_data'].values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                </table>
+                
             {% elif error %}
-            <p style="color: red;">{{ error }}</p>
+                <p style="color: red;">{{ error }}</p>
             {% endif %}
+            </div>
         </div>
     </div>
 </body>

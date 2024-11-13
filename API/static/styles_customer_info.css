@@ -33,7 +33,7 @@
     text-decoration: none;
     display: block;
     padding: 10px 25px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color changes */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
@@ -43,7 +43,7 @@
 
 /* Main Content Styles */
 .container {
-    margin-left: 250px; /* This ensures the content does not overlap the sidebar */
+    margin-left: 250px; 
     padding: 20px;
 }
 
@@ -51,8 +51,9 @@
     padding: 20px;
 }
 
-h1, h2, p, ul {
-    margin: 10px 0;
+h1, h2, p, ul, table {
+    margin: 20px auto;
+    color: #333;
 }
 
 body {
@@ -62,41 +63,37 @@ body {
     padding: 20px;
 }
 
+h1 {
+    text-align: center;
+}
+
 p, ul {
     text-align: left;
     padding-left: 200px;
-
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-p, ul {
     max-width: 500px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+
 }
 
 p {
-    color: #333;
+    font-size: 16px;
     margin: 0 auto;
     padding: 10px;
     line-height: 1.6;
-    font-size: 16px;
 }
 
 ul {
     font-size: 15px;
     color: #494747; 
     list-style-position: inside;
-    padding-left: 250px;
+    padding-left: 100px;
 }
 
 form {
     max-width: 500px;
     margin: 40px auto;
     margin-top: 20px;
+    margin-bottom: 40px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -115,7 +112,6 @@ select, input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    
     border-radius: 4px;
 }
 
@@ -134,31 +130,43 @@ input[type="submit"]:hover {
     background-color: #0440a8;
 }
 
-h2, table {
-    margin: 20px auto;
-    width: 80%;
+h2 {
+    font-size: 20px;
+    margin: 30px auto;
+    margin-top: 100px;
+    margin-left: 50px;
+    
+}
+
+.table-container {
+    margin: 30px auto;
+    max-width: 800px;
+    max-height: 400px; 
+    overflow-y: scroll; 
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 table {
     border-collapse: collapse;
-    margin-top: 20px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid #ddd; /* Added border around the entire table */
+    border: 2px solid #ddd;
 }
 
 th, td {
+    
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
+td {
+    background-color: #fafafa;
+}
+
 th {
     background-color: #f2f2f2;
     color: #333;
-}
-
-td {
-    background-color: #fafafa;
 }
 
