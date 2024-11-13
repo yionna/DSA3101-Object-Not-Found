@@ -43,13 +43,12 @@ Question 3: run 'qn3 (bonus).ipynb` in `group tasks/Subgroup A/qn3 (bonus).ipynb
 ## Repository structure
 ```
 personalized-marketing-bank/
-├── data_cleaning.ipynb                      # Cleaning the original dataset
+├── data_cleaning                            # Cleaning the original dataset
 ├── data_analysis.ipynb                      # Exploratory data analysis
 ├── data synthesis/                          # Adding columns to data
-│   ├── banking_behaviour_preference.ipynb
-│   ├── Credit_score.ipynb
-│   ├── Campaign_data.ipynb
-│   └──
+│   ├── predictions
+│   ├── processed
+│   └── raw
 ├── main.py                                  # Orchestrates the entire data pipeline and analysis process
 ├── config.py                                # For all configuration parameters
 ├── utils.py                                 # For utility functions used across multiple scripts
@@ -58,23 +57,17 @@ personalized-marketing-bank/
 ├── requirements.txt                         # All dependencies
 ├──                                          # For all functions, classes, and modules
 ├──                                          # Dockerfile to containerize the application
-├── data/                                    # Contains raw and preprocessed data files
-│   ├── BankChurners.csv                     # Main dataset
-│   ├── botswana_bank_customer_churn.csv     # For `Credit Score`, `Outstanding Loans` and `Balance`
-│   ├── User churn.csv                       # For data for digital engagement
-│   ├── credit_score.csv                     # For `Savings`
-│   ├── campaign_data.csv                    # For `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome`
-│   └── 
 ├── group tasks/
 │   ├── Subgroup A
 │   │   ├── qn1.ipynb
 │   │   ├── qn2.ipynb
-│   │   ├──
-│   │   ├──
-│   │   └── qn3 (bonus).ipynb
+│   │   ├── qn3.ipynb
+│   │   ├── qn1 (optional).ipynb
+│   │   ├── qn2 (optional).ipynb
+│   │   └── qn3 (optional).ipynb
 │   └── Subgroup B
-│   │   ├── 
-│   │   ├── 
+│   │   ├── qn1.ipynb
+│   │   ├── qn2.ipynb
 │   │   ├──
 │   │   ├──
 │   │   └── 
