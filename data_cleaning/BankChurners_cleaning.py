@@ -31,7 +31,7 @@ original = pd.read_csv("../data/raw/BankChurners.csv")
 
 # Removing irrelevent columns
 original = original.drop(original.columns[[-1, -2]], axis=1)
-original = original.drop(columns=['Avg_Open_To_Buy','Total_Amt_Chng_Q4_Q1','Contacts_Count_12_mon','Total_Ct_Chng_Q4_Q1'])
+original = original.drop(columns=['Total_Amt_Chng_Q4_Q1','Contacts_Count_12_mon','Total_Ct_Chng_Q4_Q1'])
 
 # Renaming 'Total_relationship_count' to 'No_of_product' for easier understanding
 original = original.rename(columns={'Months_on_book' : 'Month_with_bank',
