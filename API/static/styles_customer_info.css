@@ -1,0 +1,164 @@
+/* Sidebar Content Styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 20px;
+    padding-left: 10px; 
+    border-right: 4px solid #4A90E2;
+}
+
+.sidebar h2 {
+    padding: 20px;
+    color: white; 
+    text-align: left;
+    font-size: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    text-align: left;
+}
+
+.sidebar ul li a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+    padding: 10px 25px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color changes */
+}
+
+.sidebar ul li a:hover {
+    background-color: #4A90E2; 
+    color: white; 
+}
+
+/* Main Content Styles */
+.container {
+    margin-left: 250px; /* This ensures the content does not overlap the sidebar */
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+h1, h2, p, ul {
+    margin: 10px 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+p, ul {
+    text-align: left;
+    padding-left: 200px;
+
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+p, ul {
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #333;
+    margin: 0 auto;
+    padding: 10px;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+ul {
+    font-size: 15px;
+    color: #494747; 
+    list-style-position: inside;
+    padding-left: 250px;
+}
+
+form {
+    max-width: 500px;
+    margin: 40px auto;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    padding-top: 5px;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+}
+
+select, input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    
+    border-radius: 4px;
+}
+
+select {
+    border: 1px solid #c6ebdf;
+}
+
+input[type="submit"] {
+    background-color: #1c60d5;
+    border: 1px solid #0440a8;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0440a8;
+}
+
+h2, table {
+    margin: 20px auto;
+    width: 80%;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ddd; /* Added border around the entire table */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+td {
+    background-color: #fafafa;
+}
+

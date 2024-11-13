@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Profiles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_customer_info.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/customer_information" class="active">Customer Information</a></li>
+            <li><a href="/graphics" class="active">Graphical Analysis</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <h1>Client Profiles</h1>
+            <p>
+                This page will pull all relevant information about a client, such as:
+            </p>
+            <ul>
+                <li>Segment the customer belongs to</li>
+                <li>Risk of customer churning</li>
+                <li>Products to recommend to the customer</li>
+            </ul>            
+            
+            <form method="POST" action="/customer_information">
+                <label for="clientnum">Retrieve client profile:</label>
+                <select name="clientnum" id="clientnum" required>
+                    <option value="" disabled selected>Select CLIENTNUM</option>
+                    {% for client in clientnums %}
+                        <option value="{{ client }}">{{ client }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Retrieve">
+            </form>
+            
+            {% if information %}
+            <h2>Insights for CLIENTNUM: {{ information['CLIENTNUM'] }}</h2>
+            <table>
+                <tr>
+                    {% for key in information['headers'] %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for value in information['client_data'].values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            </table>
+            {% elif error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

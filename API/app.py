@@ -1,33 +1,42 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, request, render_template
 import pandas as pd
+import os
 
 # Initialize the Flask application
 app = Flask(__name__)
 
+path = '../data/predictions'
+files = [f for f in os.listdir(path) if 'csv' in f]
+data = pd.read_csv(os.path.join(path, files[0]))
+for file in files[1:]:
+    temp =  pd.read_csv(os.path.join(path, file))
+    data = data.merge(temp, on='CLIENTNUM', how='inner')
+
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def index():   
+    return render_template('index.html', clientnums=data['CLIENTNUM'])
+ 
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    question_csv = request.form.get('question')
-    clientnum = request.form.get('clientnum')
-
-    predictions = pd.read_csv(f'../data/predictions/{question_csv}')
-    client_data = predictions[predictions['CLIENTNUM'] == int(clientnum)]
+@app.route('/customer_information', methods=['GET', 'POST'])
+def retrieve_information():
+    if request.method == 'POST':
+        clientnum = request.form.get('clientnum')
+        client_data = data[data['CLIENTNUM'] == int(clientnum)]
+        information = {
+            "CLIENTNUM": clientnum,
+            "headers": list(data.columns),
+            "client_data": client_data.to_dict(orient='records')[0]
+        }
+        return render_template('customer_information.html', information=information, clientnums=data['CLIENTNUM'])
+    elif request.method == 'GET':
+        return render_template('customer_information.html', clientnums=data['CLIENTNUM'])
     
-    if client_data.empty:
-        return jsonify({"error": "Client not found"}), 404
 
-    insights = {
-        "CLIENTNUM": clientnum,
-        "headers": list(predictions.columns),
-        "prediction": client_data.to_dict(orient='records')[0],
-        "insights": None
-    }
-    
-    return render_template('index.html', insights=insights)
+@app.route('/display', methods=['GET'])
+def display():
+    return render_template('display.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
