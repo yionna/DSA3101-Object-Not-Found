@@ -28,20 +28,20 @@ def update_demographic_data(transaction_data, demographic_data):
     Updates the demographic data using groupby and map without using merge.
     
     Parameters:
-    - transaction_data: DataFrame containing 'Transaction_Amount(INR)' and 'Clientnum' columns.
-    - demographic_data: DataFrame containing 'Clientnum', 'Total_Trans_Amt', 'Total_Trans_Count' columns.
+    - transaction_data: DataFrame containing 'Transaction_Amount(INR)' and 'CLIENTNUM' columns.
+    - demographic_data: DataFrame containing 'CLIENTNUM', 'Total_Trans_Amt', 'Total_Trans_Count' columns.
     
     Returns:
     - Updated demographic data DataFrame.
     """
     # Group by Clientnum to calculate the total transaction amount and transaction count
-    transaction_sum = transaction_data.groupby('Clientnum')['Transaction_Amount(INR)'].sum()
-    transaction_count = transaction_data.groupby('Clientnum')['Clientnum'].count()
+    transaction_sum = transaction_data.groupby('CLIENTNUM')['Transaction_Amount(INR)'].sum()
+    transaction_count = transaction_data.groupby('CLIENTNUM')['CLIENTNUM'].count()
 
     # Update the Total_Trans_Amt in demographic data
-    demographic_data['Total_Trans_Amt'] += demographic_data['Clientnum'].map(transaction_sum).fillna(0)
+    demographic_data['Total_Trans_Amt'] += demographic_data['CLIENTNUM'].map(transaction_sum).fillna(0)
     # Update the Total_Trans_Count in demographic data
-    demographic_data['Total_Trans_Count'] += demographic_data['Clientnum'].map(transaction_count).fillna(0)
+    demographic_data['Total_Trans_Count'] += demographic_data['CLIENTNUM'].map(transaction_count).fillna(0)
 
     return demographic_data
 
@@ -166,8 +166,8 @@ def update_campaign_log(campaign_log, channels, timing, frequency, transaction_d
     Parameters:
     campaign_log (DataFrame): The campaign log containing data about current and past campaigns.
     channels (list): List of available channels for the marketing strategy (e.g., 'email', 'SMS').
-    timing (list): List of available timings for campaign delivery (e.g., '6 p.m.', '10 a.m.').
-    frequency (list): List of available campaign frequencies (e.g., 'weekly', 'bi-weekly').
+    timing (list): List of available timings for campaign delivery (e.g., 12, 18 ).
+    frequency (list): List of available campaign frequencies (e.g., 1,2,3, weekly base).
     optimizer (object): An optimization model that selects the best arm (combination of channel, timing, and frequency) based on customer features.
     transaction_data (DataFrame): A DataFrame containing transaction data for calculating RFM scores.
     customer_demographics (DataFrame): A DataFrame containing customer demographic information.

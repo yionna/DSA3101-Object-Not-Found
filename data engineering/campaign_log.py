@@ -26,8 +26,8 @@ def create_campaign_log(campaign_database):
 
     # Add default channel, frequency, and timing
     nrows = len(campaign_log)
-    campaign_log['Channel'] = ['Default'] * nrows
-    campaign_log['Frequency'] = [1] * nrows
-    campaign_log['Timing'] = ['Saturday 6pm'] * nrows
+    campaign_log['ChosenChannel'] = ['Default'] * nrows
+    campaign_log['ChosenFrequency'] = [1] * nrows
+    campaign_log['ChosenTiming'] = [6] * nrows
     
     return campaign_log
