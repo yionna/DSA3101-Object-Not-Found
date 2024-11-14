@@ -222,26 +222,26 @@ and transformation
 | PaymentMethod         | Categorical | Payment method used by the customer                        | 2 (Credit Card)    |
 
 
-### 3) Data Dictionary for BankChurners_cleaned Dataset
-| Variable               | Data Type   | Description                                                              | Example Value      |
-|------------------------|-------------|--------------------------------------------------------------------------|---------------------|
-| CLIENTNUM              | Integer     | Unique identifier for each customer                                      | 768805383          |
-| Attrition_Flag         | Categorical | Indicates if the customer is existing or attrited (e.g. 1 = Existing)    | Existing Customer  |
-| Customer_Age           | Integer     | Age of the customer                                                      | 45                 |
-| Gender                 | Categorical | Gender of the customer (e.g. 1 = Male)                                   | 1                  |
-| Dependent_count        | Integer     | Number of dependents the customer has                                    | 3                  |
-| Education_Level        | Categorical | Highest education level achieved by the customer                         | High School        |
-| Marital_Status         | Categorical | Marital status of the customer (e.g., 1 = Married, 0 = Single)           | 1                  |
-| Income_Category        | Categorical | Income bracket of the customer (e.g., 2 = 60 - 80, 4 = Less than 40)     | 2                  |
-| Card_Category          | Categorical | Type of credit card held by the customer (e.g. 2 = gold card)            | 1                  |
-| Month_with_bank        | Integer     | Number of months the customer has been with the bank                     | 39                 |
-| No_of_product          | Integer     | Number of products the customer is using                                 | 5                  |
-| Months_Inactive_12_mon | Integer     | Number of months the customer was inactive in the last 12 months         | 1                  |
-| Credit_Limit           | Float       | Credit limit assigned to the customer                                    | 12691.0            |
-| Total_Revolving_Bal    | Float       | Total revolving balance on the account                                   | 777                |
-| Total_Trans_Amt        | Float       | Total transaction amount for the customer                                | 1144               |
-| Total_Trans_Count      | Integer     | Total count of transactions made by the customer                         | 42                 |
-| Avg_Utilization_Ratio  | Float       | Average credit utilization ratio                                         | 0.061              |
+### 3) Data Dictionary for BankChurners_more Dataset
+| Variable               | Data Type   | Description                                             | Example Value |
+|------------------------|-------------|---------------------------------------------------------|---------------|
+| CLIENTNUM              | Integer     | Unique identifier for each customer                     | 768805383     |
+| Attrition_Flag         | Integer     | Indicates if the customer has churned (1 = Churned, 0 = Existing Customer) | 1             |
+| Customer_Age           | Integer     | Age of the customer                                     | 45            |
+| Gender                 | Integer     | Gender of the customer (1 = Male, 0 = Female)           | 1             |
+| Dependent_count        | Integer     | Number of dependents associated with the customer       | 3             |
+| Education_Level        | Categorical | Education level of the customer                         | High School   |
+| Marital_Status         | Integer     | Marital status of the customer (1 = Married, 0 = Single) | 1           |
+| Income_Category        | Integer     | Income bracket of the customer (e.g., 1 = <$40K, 2 = $40K-60K) | 2 |
+| Card_Category          | Integer     | Type/category of card held by the customer (1 = Basic, 2 = Silver) | 1 |
+| Month_with_bank        | Integer     | Number of months the customer has been with the bank    | 39            |
+| No_of_product          | Integer     | Number of products the customer is using                | 5             |
+| Months_Inactive_12_mon | Integer     | Number of months the customer was inactive in the past 12 months | 1   |
+| Credit_Limit           | Float       | Credit limit for the customer                           | 12691.0       |
+| Total_Revolving_Bal    | Float       | Total revolving balance for the customer                | 777           |
+| Total_Trans_Amt        | Float       | Total transaction amount                                | 1144          |
+| Total_Trans_Count      | Integer     | Total count of transactions                             | 42            |
+
 
 ### 4) Data Dictionary for digital_marketing_campaign_dataset Dataset
 | Variable              | Data Type   | Description                                                       | Example Value           |
