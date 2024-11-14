@@ -28,6 +28,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
 
 
+
 ### Group Tasks
 #### Subgroup A:
 *All the files are in `group_tasks/Subgroup A`*  
@@ -48,7 +49,7 @@ Qn 2: run `qn2.ipynb`
 Qn 3: run `qn2.ipynb`
 
 #### Additional Questions
-Qn 1: run `extra_qn1.py`
+Qn 1: run  
 Qn 2: run  `extra_qn2.ipynb`  
 Qn 3: run  
 
