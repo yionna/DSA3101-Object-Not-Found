@@ -63,19 +63,19 @@ Qn 3: run
 │   ├── banking_behaviour_preference.ipynb   
 │   ├── Campaign_data.ipynb
 │   └── Product_data.ipynb
-├── data_engineering
-│   ├── campaign_log.py
 ├── data/                          
 │   ├── predictions                          # For API
 │   │   ├── A_BQ3.csv                        # For Churn Likelihood
 │   │   ├── A_BQ3_pt2.csv                    # For risk of churning
 │   │   ├── BQ1.csv
+│   │   ├── BQ2.csv                          # For Dynamic Campaign
 │   │   └── segementation_result_static.csv
 │   ├── processed                            # Processed Data
 │   │   ├── BankChurners_cleaned.csv
 │   │   ├── BankChurners_more.csv
 │   │   ├── Campaign.csv
 │   │   ├── Compaign_metrics.csv
+│   │   ├── demographic.csv
 │   │   ├── banking_behaviour_preference.csv
 │   │   ├── banking_behaviour_preference_original.csv
 │   │   ├── income_category_mapping.json
@@ -115,12 +115,8 @@ and transformation
 ├── models                                   # For all functions, classes, and modules
 │   ├── AIMarketing
 │   │   └── marketing.py
-│   ├── CampaignUpdate
-│   │   └── UpdateCampaign.py
 │   ├── DynamicCampaign
 │   │   └── DynamicCampaignSystem.py
-│   ├── EarlyWarningSystem
-│   │   └── EarlyWarningSystem.py
 │   ├── RecommendationSystem
 │   │   └── recommendationsystem.py
 │   └── customerSegmentation
