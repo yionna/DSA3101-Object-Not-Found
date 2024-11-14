@@ -145,6 +145,8 @@ and transformation
 ├── main.py                                  # Orchestrates the entire data pipeline and analysis process
 ├── config.py                                # For all configuration parameters
 ├── utils.py                                 # For utility functions used across multiple scripts
+├── dockerfile                               # Defines the Docker image setup using a Conda base image, installing dependencies from `environment.yml`
+├── environment.yml                          # Lists required packages for a reproducible Conda environment within Docker
 └── README.md                                # Project documentation
 ```
 
