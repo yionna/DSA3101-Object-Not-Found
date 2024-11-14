@@ -61,7 +61,7 @@ Qn 3: run
 
 ## Repository structure
 ```
-personalized-marketing-bank/
+
 ├── data_cleaning                            # Cleaning the original dataset
 │   ├── BankChurners_cleaning.py
 ├──                       # Exploratory data analysis
@@ -92,13 +92,13 @@ personalized-marketing-bank/
 │   │   ├── segmentation_result_static_original.csv
 │   │   └── simulation_result.csv
 │   └── raw                                  # Original Datasets
-│   │   ├── BankChurners.csv
-│   │   ├── User churn.csv
-│   │   ├── bank_reviews3.csv
-│   │   ├── banking_product_services.csv
-│   │   ├── botswana_bank_customer_churn.csv
-│   │   ├── campaign_data.csv
-│   │   └── credit_score.csv
+│       ├── BankChurners.csv
+│       ├── User churn.csv
+│       ├── bank_reviews3.csv
+│       ├── banking_product_services.csv
+│       ├── botswana_bank_customer_churn.csv
+│       ├── campaign_data.csv
+│       └── credit_score.csv
 ├── sql                                      # SQL scripts for data extraction
 and transformation
 │   └── setup_bank_db.sql
@@ -124,9 +124,9 @@ and transformation
 │   ├── RecommendationSystem
 │   │   └── recommendationsystem.py
 │   └── customerSegmentation
-│   │   ├── CustomerDataGenerator.py
-│   │   ├── dynamic.py
-│   │   └── static.py
+│       ├── CustomerDataGenerator.py
+│       ├── dynamic.py
+│       └── static.py
 ├──                                          # Dockerfile to containerize the application
 ├── group tasks/
 │   ├── Subgroup A
@@ -137,11 +137,11 @@ and transformation
 │   │   ├── qn2 (optional).ipynb
 │   │   └── qn3 (optional).ipynb
 │   └── Subgroup B
-│   │   ├── qn1.ipynb
-│   │   ├── qn2.ipynb
-│   │   ├── qn3.ipynb
-│   │   ├── extra_qn2.ipynb
-│   │   └──
+│       ├── qn1.ipynb
+│       ├── qn2.ipynb
+│       ├── qn3.ipynb
+│       ├── extra_qn2.ipynb
+│       └──
 ├── main.py                                  # Orchestrates the entire data pipeline and analysis process
 ├── config.py                                # For all configuration parameters
 ├── utils.py                                 # For utility functions used across multiple scripts
