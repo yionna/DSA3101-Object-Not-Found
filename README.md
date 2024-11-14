@@ -48,7 +48,7 @@ Qn 2: run `qn2.ipynb`
 Qn 3: run `qn2.ipynb`
 
 #### Additional Questions
-Qn 1: run
+Qn 1: run 
 Qn 2: run  `extra_qn2.ipynb`  
 Qn 3: run  
 
