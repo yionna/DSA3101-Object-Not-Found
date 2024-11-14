@@ -17,6 +17,6 @@ clusters = {'low_income': [1, 3], 'medium_income': [2],'high_income': [4, 5]}
 product_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 cols, scores = obtain_best_columns(recommendation_df, clusters, product_list)
 predicted_labels, actual_labels = model_train_test(recommendation_df, cols, clusters, product_list)
-
+print(predicted_labels)
 
 

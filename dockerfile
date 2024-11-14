@@ -1,12 +1,14 @@
-FROM python:3.8
+FROM continuumio/miniconda3
 
 WORKDIR /app
 
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+COPY environment.yml .
 
-COPY . /app
+RUN conda env create -f environment.yml
 
-EXPOSE 8000
+# Make sure the environment is activated
+SHELL ["conda", "run", "-n", "dsa3101_env", "/bin/bash", "-c"]
 
-CMD ["python", "main.py"]
+COPY . .
+
+CMD ["conda", "run", "-n", "dsa3101_env", "python", "main.py"]
