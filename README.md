@@ -1,14 +1,7 @@
 # DSA3101-Object-Not-Found: Machine Learning for Personalised Marketing Campaigns
+Marketing efforts in the banking industry have shifted away from traditional methods like mass media marketing to digital marketing, as clients become more digitally savvy. Current digital marketing efforts rely mostly on broad demographic segments and basic metrics, underutilising available consumer data. Our team’s marketing specialists have thus asked for our expertise in identifying the relevant segments to target their marketing campaign and come up with strategies to address low engagement with customers. Our team and data scientists have thus proposed creating more personalised marketing strategies that are tailored to customers’ preferences, behaviours and needs.
 
 ## Project Overview
-
-pts we could include:
-- what the marketing specialists have "told" us
-- problems with marketing without ML/AI
-- what we did
-- what we will be telling the IT specialists to do from this project (maybe if it flows smoothly)
-
-
 Marketing specialists on our team have expressed the need for a more targeted campaign since the current more "traditional" marketing methods rely mostly on broad demographic segments and basic metrics, not fully utilising the wealth of available customer data. This causes campaigns not to consider more nuanced features like customer preferences, behaviours, and needs.
 
 ### Problems with Marketing without Machine Learning (ML)/ Artificial Intelligence (AI)
@@ -32,7 +25,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 2) run `Campaign_data.ipynb` to get `Campaign.csv` in `data/processed`
 
 #### For Subgroup B:
-1) 
+1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
 
 
 ### Group Tasks
