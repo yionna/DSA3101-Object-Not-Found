@@ -34,9 +34,9 @@ class EarlyWarningSystem:
                                      from low risk to high risk.
         """
         # Merge previous and updated databases on 'CustomerID'
-        merged_db = previous_db[['CustomerID', 'Alert']].merge(
-            updated_db[['CustomerID', 'Alert']],
-            on='CustomerID',
+        merged_db = previous_db[['CLIENTNUM', 'Alert']].merge(
+            updated_db[['CLIENTNUM', 'Alert']],
+            on='CLIENTNUM',
             suffixes=('_prev', '_new')
         )
 

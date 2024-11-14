@@ -1,7 +1,4 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from collections import Counter
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textstat import flesch_reading_ease
@@ -32,8 +29,6 @@ class PersonalizedMarketingSystem:
             prompt += f" Their income category is {row['Income_Category']}."
         if pd.notnull(row['Loyalty']):
             prompt += f" This customer has a loyalty status of {row['Loyalty']}."
-        if pd.notnull(row['Card_Category']):
-            prompt += f" They have a {row['Card_Category']} credit card."
         return prompt
 
     def generate_message(self, prompt, max_length=100):
@@ -44,11 +39,10 @@ class PersonalizedMarketingSystem:
         outputs = self.model.generate(
             inputs,
             attention_mask=attention_mask,
-           max_length=max_length,
+            max_length=max_length,
             num_return_sequences=1,
             no_repeat_ngram_size=2,
-            early_stopping=True,
-          pad_token_id=self.tokenizer.eos_token_id  # Set the pad token ID to the EOS token ID
+            pad_token_id=self.tokenizer.eos_token_id  # Set the pad token ID to the EOS token ID
         )
         message = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
         return message
@@ -84,12 +78,6 @@ class PersonalizedMarketingSystem:
         
         return best_message, best_style
 
-    def process_customers(self):
-        self.demographic_data[['BestMessage', 'PreferredStyle']] = self.demographic_data.apply(
-            lambda row: pd.Series(self.find_best_message(row)), axis=1
-        )
-        return self.demographic_data
-
     def update_campaign_database(self):
         for _, row in self.demographic_data.iterrows():
             clientnum = row['CLIENTNUM']
@@ -101,10 +89,3 @@ class PersonalizedMarketingSystem:
                 self.campaign_database.loc[self.campaign_database['CLIENTNUM'] == clientnum, 'PreferredStyle'] = preferred_style
 
         print("Campaign database updated with marketing messages and customer preferences.")
-
-    def plot_preference_distribution(self):
-        style_counts = self.demographic_data['PreferredStyle'].value_counts()
-        plt.figure(figsize=(10, 6))
-        plt.pie(style_counts, labels=style_counts.index, autopct='%1.1f%%', startangle=140)
-        plt.title('Customer Preference for Marketing Message Styles')
-        plt.show()

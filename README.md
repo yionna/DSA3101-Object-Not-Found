@@ -20,43 +20,120 @@ There will be a lack of personalisation as customers will receive generic, one-s
 - Docker
 - Other dependencies listed in ´requirements.txt´
 
-### Data preparation
-1) run `data_cleaning.ipynb` using `BankChurners.csv` (our original dataset) to get `BankChurners_cleaned.csv`
-2) run `data_analysis.ipynb` to get the exploratory data analysis of the original cleaned dataset
+### Data Preparation
+1) run `BankChurners_cleaning.ipynb` in `data_cleaning` to get `BankChurners_cleaned.csv` in `data/processed`
 
-### For Subgroup A:
-#### Data synthesis
-1) run `banking_behaviour_preference.ipynb` in `data synthesis/banking_behaviour_preference.ipynb` to get `processed/banking_behaviour_preference.csv`
-2) run `Credit_Score.ipynb` in `data synthesis/Credit_Score.ipynb` using `credit_score.csv` to add `Savings` (savings outside the bank) to the original cleaned dataset --> `original (2).csv`
-3) run `Campaign_data.ipynb` in `data synthesis/Campaign_data.ipynb` using `campaign_data.csv` to add `Duration_of_Contact`, `Number_of_Contacts_Made`, `Last_Contact_Made` and `Outcome` to `original (2).csv` --> `original (3).csv`
+### Data Synthesis
+*All the files are in `data_synthesis`*
+1) run `BankChurner_more.ipynb` in `data_synthesis` to get `BankChurners_more.csv` in `data/processed`
 
-#### Questions
-Question 1: run `qn1.ipynb` in `group tasks/Subgroup A/qn1.ipynb` using `processed/banking_behaviour_preference.csv` to get `segementation_result_static.csv`.<br>
-Question 2: run `qn2.ipynb` in `group tasks/Subgroup A/qn2.ipynb` where `original (3).csv` and `banking_behaviour_preference.csv` merge to get `original (5).csv`.<br>
-Question 3: run `qn3.ipynb` in `group tasks/Subgroup A/qn3.ipynb` using `processed/banking_behaviour_preference_original.csv` and `processed/segmentation_result_static_original.csv`.<br>
+#### For Subgroup A:
+1) run `banking_behaviour_preference.ipynb` to get `banking_behaviour_preference.csv` in `data/processed`
+2) run `Campaign_data.ipynb` to get `Campaign.csv` in `data/processed`
 
-Bonus tasks:<br>
-Question 1: run `qn1(optional).ipynb` in `group tasks/Subgroup A/qn1(optional).ipynb` using `bank_reviews3.csv`.<br>
-Question 2:<br>
-Question 3: run `qn3 (bonus).ipynb` in `group tasks/Subgroup A/qn3 (bonus).ipynb` using `original (5).csv`.<br>
+#### For Subgroup B:
+1) 
 
+
+### Group Tasks
+#### Subgroup A:
+*All the files are in `group_tasks/Subgroup A`*  
+Qn 1: run `qn1.ipynb`  
+Qn 2: run `qn2.ipynb`  
+Qn 3: run `qn3.ipynb`
+
+#### Additional Questions
+Qn 1: run qn1(optional).ipynb
+Qn 2: run qn2(optional).ipynb
+Qn 3: run qn3(optional).ipynb 
+
+
+#### Subgroup B:
+*All the files are in `group_tasks/Subgroup B`*  
+Qn 1: run `qn1.ipynb`  
+Qn 2: run `qn2.ipynb`  
+Qn 3: run `qn2.ipynb`
+
+#### Additional Questions
+Qn 1: run  
+Qn 2: run  
+Qn 3: run  
 
 ## Repository structure
 ```
-personalized-marketing-bank/
+
 ├── data_cleaning                            # Cleaning the original dataset
-├── data_analysis.ipynb                      # Exploratory data analysis
-├── data synthesis/                          # Adding columns to data
-│   ├── predictions
-│   ├── processed
-│   └── raw
-├── main.py                                  # Orchestrates the entire data pipeline and analysis process
-├── config.py                                # For all configuration parameters
-├── utils.py                                 # For utility functions used across multiple scripts
-├──                                          # SQL scripts for data extraction and transformation
-├──                                          # Simple API (using Flask or FastAPI) to serve model predictions and key insights
+│   ├── BankChurners_cleaning.py
+├──                       # Exploratory data analysis
+├── data_synthesis                           # Adding rows and columns to main data
+│   ├── BankChurners_more.ipynb              # Synthesise more rows into `BankChurners_cleaned.csv`
+│   ├── banking_behaviour_preference.ipynb   
+│   ├── Campaign_data.ipynb
+│   └── Product_data.ipynb
+├── data_engineering
+│   ├── campaign_log.py
+├── data/                          
+│   ├── predictions                          # For API
+│   │   ├── A_BQ3.csv                        # For Churn Likelihood
+│   │   ├── A_BQ3_pt2.csv                    # For risk of churning
+│   │   ├── BQ1.csv
+│   │   └── segementation_result_static.csv
+│   ├── processed                            # Processed Data
+│   │   ├── BankChurners_cleaned.csv
+│   │   ├── BankChurners_more.csv
+│   │   ├── Campaign.csv
+│   │   ├── Compaign_metrics.csv
+│   │   ├── banking_behaviour_preference.csv
+│   │   ├── banking_behaviour_preference_original.csv
+│   │   ├── income_category_mapping.json
+│   │   ├── product_services_data.csv
+│   │   ├── recommendation_system_dataset.csv
+│   │   ├── segmentation_result_static.csv
+│   │   ├── segmentation_result_static_original.csv
+│   │   └── simulation_result.csv
+│   ├── raw                                  # Original Datasets
+│   │   ├── BankChurners.csv
+│   │   ├── User churn.csv
+│   │   ├── bank_reviews3.csv
+│   │   ├── banking_product_services.csv
+│   │   ├── botswana_bank_customer_churn.csv
+│   │   ├── campaign_data.csv
+│   │   └── credit_score.csv
+│   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
+│       ├── output1.png
+│       ├── output2.png
+│       ├── output3.png
+│       ├── output4.png
+│       ├── output5.png
+│       └── output6.png
+├── sql                                      # SQL scripts for data extraction
+and transformation
+│   └── setup_bank_db.sql
+├── API                                      # Simple API (using Flask or FastAPI) to serve model predictions and key insights
+│   ├── static
+│   │   ├── styles_customer_info.css
+│   │   └── styles_index.css
+│   ├── templates
+│   │   ├── customer_information.html
+│   │   └── index.html
+│   ├── app.py
+│   └── dashboard.py 
 ├── requirements.txt                         # All dependencies
-├──                                          # For all functions, classes, and modules
+├── models                                   # For all functions, classes, and modules
+│   ├── AIMarketing
+│   │   └── marketing.py
+│   ├── CampaignUpdate
+│   │   └── UpdateCampaign.py
+│   ├── DynamicCampaign
+│   │   └── DynamicCampaignSystem.py
+│   ├── EarlyWarningSystem
+│   │   └── EarlyWarningSystem.py
+│   ├── RecommendationSystem
+│   │   └── recommendationsystem.py
+│   └── customerSegmentation
+│       ├── CustomerDataGenerator.py
+│       ├── dynamic.py
+│       └── static.py
 ├──                                          # Dockerfile to containerize the application
 ├── group tasks/
 │   ├── Subgroup A
@@ -67,11 +144,14 @@ personalized-marketing-bank/
 │   │   ├── qn2 (optional).ipynb
 │   │   └── qn3 (optional).ipynb
 │   └── Subgroup B
-│   │   ├── qn1.ipynb
-│   │   ├── qn2.ipynb
-│   │   ├──
-│   │   ├──
-│   │   └── 
+│       ├── qn1.ipynb
+│       ├── qn2.ipynb
+│       ├── qn3.ipynb
+│       ├── extra_qn2.ipynb
+│       └──
+├── main.py                                  # Orchestrates the entire data pipeline and analysis process
+├── config.py                                # For all configuration parameters
+├── utils.py                                 # For utility functions used across multiple scripts
 └── README.md                                # Project documentation
 ```
 
@@ -95,6 +175,10 @@ personalized-marketing-bank/
 ## Instructions for building and running the Docker containers
 
 ## API documentation
+### Data:
+* From `group_tasks/Subgroup A/qn3(optional).ipynb`:
+    * for customer churn likelihood: `data/predictions/A_BQ3.csv`
+    * for risk of churning: `data/predictions/A_BQ3_pt2.csv`
 
 ### Endpoints
 
