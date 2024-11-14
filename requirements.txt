@@ -14,4 +14,4 @@ seaborn == 0.12.2
 sdv == 1.17.0
 textblob == 0.18.0.post0
 
-## please add pip install -r requirements.txt to all the files
+## pip install -r requirements.txt
