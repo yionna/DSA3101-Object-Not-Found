@@ -26,6 +26,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 
 #### For Subgroup B:
 1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
+2) run `Demographic_data_without_result.ipynb` to get `demographic.csv` in `data/processed`
 
 
 
