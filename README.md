@@ -91,14 +91,21 @@ Qn 3: run
 │   │   ├── segmentation_result_static.csv
 │   │   ├── segmentation_result_static_original.csv
 │   │   └── simulation_result.csv
-│   └── raw                                  # Original Datasets
-│       ├── BankChurners.csv
-│       ├── User churn.csv
-│       ├── bank_reviews3.csv
-│       ├── banking_product_services.csv
-│       ├── botswana_bank_customer_churn.csv
-│       ├── campaign_data.csv
-│       └── credit_score.csv
+│   ├── raw                                  # Original Datasets
+│   │   ├── BankChurners.csv
+│   │   ├── User churn.csv
+│   │   ├── bank_reviews3.csv
+│   │   ├── banking_product_services.csv
+│   │   ├── botswana_bank_customer_churn.csv
+│   │   ├── campaign_data.csv
+│   │   └── credit_score.csv
+│   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
+│       ├── output1.png
+│       ├── output2.png
+│       ├── output3.png
+│       ├── output4.png
+│       ├── output5.png
+│       └── output6.png
 ├── sql                                      # SQL scripts for data extraction
 and transformation
 │   └── setup_bank_db.sql
