@@ -8,8 +8,9 @@ banking_df = pd.read_csv("data/processed/banking_behaviour_preference.csv")
 recommendation_df = pd.read_csv("data/processed/recommendation_system_dataset.csv") # dataset with additional product data
 
 # Customer segmentation
-segmentation_test = CustomerSegmentation(banking_df)
-segmentation_result = segmentation_test.perform_segmentation()
+segmentation = CustomerSegmentation(banking_df)
+segmentation_result = segmentation.perform_segmentation()
+print(segmentation_result['Segment'].value_counts())
 
 # Recommendation system
 clusters = {'low_income': [1, 3], 'medium_income': [2],'high_income': [4, 5]}
