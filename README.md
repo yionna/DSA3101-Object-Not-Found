@@ -26,6 +26,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 
 #### For Subgroup B:
 1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
+2) run `Demographic_data_without_result.ipynb` to get `demographic.csv` in `data/processed`
 
 
 
@@ -63,6 +64,7 @@ Qn 3: run
 │   ├── BankChurners_more.ipynb              # Synthesise more rows into `BankChurners_cleaned.csv`
 │   ├── banking_behaviour_preference.ipynb   
 │   ├── Campaign_data.ipynb
+│   ├── Demographic_data_without_result.ipynb
 │   └── Product_data.ipynb
 ├── data/                          
 │   ├── predictions                          # For API
