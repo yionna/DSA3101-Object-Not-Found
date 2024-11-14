@@ -1,3 +1,20 @@
+'''
+In order to integrate external factors (such as economic indicators and competitor activities) into our marketing optimization model, we divide it into the following steps:
+
+1. Build an automate external data collection system, establish data acquisition module, an automated data collection script to regularly obtain economic indicators from trusted data sources (such as FRED or other economic data APIs). Data obtained through APIs can include GDP, unemployment rate, consumer confidence index, etc.
+
+2.  Simulate and generate competitor promotion activities, price changes, new product launches and other data for different customer segments in the market, and can also update this information regularly based on actual competitor data.
+
+3. Save the collected data to a unified data storage (such as a database or hierarchical directory), and clean and update it regularly to ensure the timeliness of the data.
+
+4.  In the data preprocessing step, associate the latest economic indicators and competitor activity data with customer data. Align external data by customer characteristics (such as market segmentation labels) and time (such as the latest economic data) to make it meaningful to the current marketing optimization model.
+
+5. For the data encoding and feature engineering, we should appropriately encode and process external factors. For numerical data (such as GDP and CPI), you can directly add them to the model; for categorical data (such as competitor promotions), perform one-hot encoding or other encoding methods to facilitate model processing.
+6. Then add processed external variables to the existing model as new input features. Can add new feature columns to the model input layer, including encoded data of economic indicators and competitor activities.
+7. Evaluate the impact of new features on the model's prediction performance and perform model tuning. For example,  can try multiple models (such as XGBoost, random forest) to confirm the best way to integrate external factors, and analyze the impact of new features on the model's prediction results, and find out which external factors contribute the most to the optimization results through feature importance analysis, which helps to further improve the accuracy and stability of the model.
+
+In this way, we can systematically make external factors into the marketing optimization model, making the model more flexible in responding to market changes and the impact of the external environment.
+'''
 
 import os
 
