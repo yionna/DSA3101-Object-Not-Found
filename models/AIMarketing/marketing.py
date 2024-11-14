@@ -5,7 +5,6 @@ from textstat import flesch_reading_ease
 from nltk import sent_tokenize
 
 ###This is just a prototype
-###It takes too long to run without gpu, please do not run it
 class PersonalizedMarketingSystem:
     def __init__(self, demographic_data, campaign_database):
         self.demographic_data = demographic_data
