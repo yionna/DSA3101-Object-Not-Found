@@ -1,3 +1,20 @@
+'''
+In order to integrate external factors (such as economic indicators and competitor activities) into our marketing optimization model, we divide it into the following steps:
+
+1. Build an automate external data collection system, establish data acquisition module, an automated data collection script to regularly obtain economic indicators from trusted data sources (such as FRED or other economic data APIs). Data obtained through APIs can include GDP, unemployment rate, consumer confidence index, etc.
+
+2.  Simulate and generate competitor promotion activities, price changes, new product launches and other data for different customer segments in the market, and can also update this information regularly based on actual competitor data.
+
+3. Save the collected data to a unified data storage (such as a database or hierarchical directory), and clean and update it regularly to ensure the timeliness of the data.
+
+4.  In the data preprocessing step, associate the latest economic indicators and competitor activity data with customer data. Align external data by customer characteristics (such as market segmentation labels) and time (such as the latest economic data) to make it meaningful to the current marketing optimization model.
+
+5. For the data encoding and feature engineering, we should appropriately encode and process external factors. For numerical data (such as GDP and CPI), you can directly add them to the model; for categorical data (such as competitor promotions), perform one-hot encoding or other encoding methods to facilitate model processing.
+6. Then add processed external variables to the existing model as new input features. Can add new feature columns to the model input layer, including encoded data of economic indicators and competitor activities.
+7. Evaluate the impact of new features on the model's prediction performance and perform model tuning. For example,  can try multiple models (such as XGBoost, random forest) to confirm the best way to integrate external factors, and analyze the impact of new features on the model's prediction results, and find out which external factors contribute the most to the optimization results through feature importance analysis, which helps to further improve the accuracy and stability of the model.
+
+In this way, we can systematically make external factors into the marketing optimization model, making the model more flexible in responding to market changes and the impact of the external environment.
+'''
 
 import os
 
@@ -78,14 +95,14 @@ segmentation = pd.read_csv("../../data/processed/segmentation_result_static.csv"
 # Merge customer data with segmentation data
 df1 = df.set_index('CLIENTNUM').join(segmentation.set_index('CLIENTNUM'), on='CLIENTNUM', how='inner').reset_index()
 
-# Load external data
+# external data
 economic_data = pd.read_csv('data/external/economic_indicators.csv')
 competitor_data = pd.read_csv('data/external/competitor_actions.csv')
 
-# Convert 'Date' to datetime in economic_data
+# Convert 'Date' to datetime 
 economic_data['DATE'] = pd.to_datetime(economic_data['DATE'])
 
-# For simplicity, let's assume all customers are associated with the latest economic data
+# let's assume all customers are associated with the latest economic data
 latest_economic_data = economic_data.sort_values('DATE').iloc[-1]
 for col in ['GDP', 'Unemployment_Rate', 'CPI', 'Consumer_Confidence']:
     df1[col] = latest_economic_data[col]
@@ -93,10 +110,10 @@ for col in ['GDP', 'Unemployment_Rate', 'CPI', 'Consumer_Confidence']:
 # Merge competitor data on 'Segment'
 df1 = df1.merge(competitor_data, on='Segment', how='left')
 
-# Handle missing values if any
+
 df1.fillna(method='ffill', inplace=True)
 
-# Continue with your existing preprocessing steps...
+
 
 # Define the levels for ordinal categorical variables
 levels = {
@@ -130,7 +147,6 @@ for col in df1.columns:
 # One-hot encode any remaining categorical variables
 df1 = pd.get_dummies(df1, columns=['Marital_Status'], drop_first=True)
 
-# Save the preprocessed data
 df1.to_csv('data/preprocessed_data.csv', index=False)
 print("Data preprocessing completed and saved.")
 # modeling.py
@@ -140,7 +156,7 @@ from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
-# Load preprocessed data
+
 df2 = pd.read_csv('data/preprocessed_data.csv')
 
 # Convert product columns into binary variables
@@ -149,80 +165,19 @@ product_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 for product in product_list:
     df2[product] = np.where(df2[product] > 0, 1, 0)
 
-# Define customer clusters
+
 clusters = {'general': [1, 4, 5], 'high_value': [2, 3]}
 
-# Function to select best features
-def select_best(x, y, k=10, score_func=f_regression):
-    KBest = SelectKBest(score_func, k)
-    KBest.fit(x, y)
-    cols = KBest.get_support(indices=True)
-    return x.columns[cols], pd.DataFrame({'features': x.columns, 'score': KBest.scores_, 'p-value': KBest.pvalues_})
 
-# Initialize dictionaries
-scores = {key: {} for key in clusters}
-cols = {key: {} for key in clusters}
-training_features = {key: {} for key in clusters}
-predicted_labels = {key: {} for key in clusters}
-actual_labels = {key: {} for key in clusters}
 
-# Loop through clusters and products to train models
-for key, cluster in clusters.items():
-    users = df2[df2['Segment'].isin(cluster)]
-    for product in product_list:
-        # Prepare target variable
-        y = users[product]
-        
-        # Prepare training features (exclude product columns and 'CLIENTNUM')
-        X = users.drop(columns=product_list + ['CLIENTNUM'])
-        
-        # Feature selection
-        selected_features, feature_scores = select_best(X, y, k=10)
-        cols[key][product] = selected_features
-        
-        # Prepare training data
-        X_selected = X[selected_features]
-        
-        # Split data
-        X_train, X_test, y_train, y_test = train_test_split(
-            X_selected, y, test_size=0.4, random_state=123
-        )
-        
-        # Train XGBClassifier
-        bst = XGBClassifier(
-            n_estimators=100,
-            max_depth=5,
-            learning_rate=0.1,
-            objective='binary:logistic',
-            use_label_encoder=False,
-            eval_metric='logloss'
-        )
-        bst.fit(X_train, y_train)
-        
-        # Make predictions
-        y_pred_proba = bst.predict_proba(X_test)[:, 1]
-        predicted_labels[key][product] = pd.DataFrame(
-            y_pred_proba, index=X_test.index, columns=[product]
-        )
-        actual_labels[key][product] = y_test
-
-# Function to consolidate results
-def get_results(results, source):
-    products = list(results.keys())
-    final_df = results[products[0]].copy()
-    for product in products[1:]:
-        final_df = final_df.join(results[product], how='left')
-    final_df['Cluster'] = source
-    return final_df.reset_index()
-
-# Combine predictions from all clusters
+# Combine predictions 
 predictions_list = []
 for source in clusters:
     pldf = get_results(predicted_labels[source], source)
     predictions_list.append(pldf)
 combined_predictions = pd.concat(predictions_list, ignore_index=True)
 
-# Save combined predictions
+
 combined_predictions.to_csv('data/predictions.csv', index=False)
 print("Modeling completed and predictions saved.")
 # Analyzing feature importance for one of the models
@@ -232,11 +187,11 @@ import matplotlib.pyplot as plt
 key = 'general'
 product = 'A'
 
-# Retrieve the model and feature names
+#  model and feature names
 model = bst  # The last trained model in the loop
 feature_names = cols[key][product]
 
-# Plot feature importance
+
 xgb.plot_importance(model, max_num_features=10, importance_type='gain')
 plt.title(f'Feature Importance for Product {product} in Cluster {key}')
 plt.show()
