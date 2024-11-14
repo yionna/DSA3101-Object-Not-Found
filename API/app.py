@@ -37,6 +37,21 @@ def retrieve_information():
 def display():
     return render_template('display.html')
 
+demographic_df = pd.read_csv('demographic.csv')
+
+@app.get("/get_campaign/{clientnum}")
+async def get_campaign(clientnum: int):
+    # Extract client information
+    client_data = demographic_df[demographic_df['CLIENTNUM'] == clientnum]
+    if client_data.empty:
+        return {"error": "Client not found"}
+
+    campaign = {
+        "ChosenTiming": int(client_data['ChosenTiming'].values[0]),
+        "ChosenFrequency": int(client_data['ChosenFrequency'].values[0]),
+        "ChosenChannel": client_data['ChosenChannel'].values[0]
+    }
+    return campaign
 
 if __name__ == '__main__':
     app.run(debug=True)
