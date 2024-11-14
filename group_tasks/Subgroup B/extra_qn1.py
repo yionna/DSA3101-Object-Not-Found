@@ -95,14 +95,14 @@ segmentation = pd.read_csv("../../data/processed/segmentation_result_static.csv"
 # Merge customer data with segmentation data
 df1 = df.set_index('CLIENTNUM').join(segmentation.set_index('CLIENTNUM'), on='CLIENTNUM', how='inner').reset_index()
 
-# Load external data
+# external data
 economic_data = pd.read_csv('data/external/economic_indicators.csv')
 competitor_data = pd.read_csv('data/external/competitor_actions.csv')
 
-# Convert 'Date' to datetime in economic_data
+# Convert 'Date' to datetime 
 economic_data['DATE'] = pd.to_datetime(economic_data['DATE'])
 
-# For simplicity, let's assume all customers are associated with the latest economic data
+# let's assume all customers are associated with the latest economic data
 latest_economic_data = economic_data.sort_values('DATE').iloc[-1]
 for col in ['GDP', 'Unemployment_Rate', 'CPI', 'Consumer_Confidence']:
     df1[col] = latest_economic_data[col]
@@ -110,10 +110,10 @@ for col in ['GDP', 'Unemployment_Rate', 'CPI', 'Consumer_Confidence']:
 # Merge competitor data on 'Segment'
 df1 = df1.merge(competitor_data, on='Segment', how='left')
 
-# Handle missing values if any
+
 df1.fillna(method='ffill', inplace=True)
 
-# Continue with your existing preprocessing steps...
+
 
 # Define the levels for ordinal categorical variables
 levels = {
@@ -147,7 +147,6 @@ for col in df1.columns:
 # One-hot encode any remaining categorical variables
 df1 = pd.get_dummies(df1, columns=['Marital_Status'], drop_first=True)
 
-# Save the preprocessed data
 df1.to_csv('data/preprocessed_data.csv', index=False)
 print("Data preprocessing completed and saved.")
 # modeling.py
@@ -157,7 +156,7 @@ from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
-# Load preprocessed data
+
 df2 = pd.read_csv('data/preprocessed_data.csv')
 
 # Convert product columns into binary variables
@@ -166,19 +165,19 @@ product_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 for product in product_list:
     df2[product] = np.where(df2[product] > 0, 1, 0)
 
-# Define customer clusters
+
 clusters = {'general': [1, 4, 5], 'high_value': [2, 3]}
 
 
 
-# Combine predictions from all clusters
+# Combine predictions 
 predictions_list = []
 for source in clusters:
     pldf = get_results(predicted_labels[source], source)
     predictions_list.append(pldf)
 combined_predictions = pd.concat(predictions_list, ignore_index=True)
 
-# Save combined predictions
+
 combined_predictions.to_csv('data/predictions.csv', index=False)
 print("Modeling completed and predictions saved.")
 # Analyzing feature importance for one of the models
@@ -188,11 +187,11 @@ import matplotlib.pyplot as plt
 key = 'general'
 product = 'A'
 
-# Retrieve the model and feature names
+#  model and feature names
 model = bst  # The last trained model in the loop
 feature_names = cols[key][product]
 
-# Plot feature importance
+
 xgb.plot_importance(model, max_num_features=10, importance_type='gain')
 plt.title(f'Feature Importance for Product {product} in Cluster {key}')
 plt.show()
