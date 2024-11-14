@@ -152,68 +152,7 @@ for product in product_list:
 # Define customer clusters
 clusters = {'general': [1, 4, 5], 'high_value': [2, 3]}
 
-# Function to select best features
-def select_best(x, y, k=10, score_func=f_regression):
-    KBest = SelectKBest(score_func, k)
-    KBest.fit(x, y)
-    cols = KBest.get_support(indices=True)
-    return x.columns[cols], pd.DataFrame({'features': x.columns, 'score': KBest.scores_, 'p-value': KBest.pvalues_})
 
-# Initialize dictionaries
-scores = {key: {} for key in clusters}
-cols = {key: {} for key in clusters}
-training_features = {key: {} for key in clusters}
-predicted_labels = {key: {} for key in clusters}
-actual_labels = {key: {} for key in clusters}
-
-# Loop through clusters and products to train models
-for key, cluster in clusters.items():
-    users = df2[df2['Segment'].isin(cluster)]
-    for product in product_list:
-        # Prepare target variable
-        y = users[product]
-        
-        # Prepare training features (exclude product columns and 'CLIENTNUM')
-        X = users.drop(columns=product_list + ['CLIENTNUM'])
-        
-        # Feature selection
-        selected_features, feature_scores = select_best(X, y, k=10)
-        cols[key][product] = selected_features
-        
-        # Prepare training data
-        X_selected = X[selected_features]
-        
-        # Split data
-        X_train, X_test, y_train, y_test = train_test_split(
-            X_selected, y, test_size=0.4, random_state=123
-        )
-        
-        # Train XGBClassifier
-        bst = XGBClassifier(
-            n_estimators=100,
-            max_depth=5,
-            learning_rate=0.1,
-            objective='binary:logistic',
-            use_label_encoder=False,
-            eval_metric='logloss'
-        )
-        bst.fit(X_train, y_train)
-        
-        # Make predictions
-        y_pred_proba = bst.predict_proba(X_test)[:, 1]
-        predicted_labels[key][product] = pd.DataFrame(
-            y_pred_proba, index=X_test.index, columns=[product]
-        )
-        actual_labels[key][product] = y_test
-
-# Function to consolidate results
-def get_results(results, source):
-    products = list(results.keys())
-    final_df = results[products[0]].copy()
-    for product in products[1:]:
-        final_df = final_df.join(results[product], how='left')
-    final_df['Cluster'] = source
-    return final_df.reset_index()
 
 # Combine predictions from all clusters
 predictions_list = []
