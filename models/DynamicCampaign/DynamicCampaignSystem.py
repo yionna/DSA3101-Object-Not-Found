@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import scipy.stats as stats
 
-#### Part I: Timing, Frequency, Channel Optimizer (Multi-armed Bandit)
+
 class MainOptimizer:
     def __init__(self, n_arms, learning_rate=0.01, alpha=0.5, beta=0.7):
         self.n_arms = n_arms
@@ -39,7 +39,6 @@ class MainOptimizer:
         # Clipping the weights to ensure they stay within [0, 1]
         np.clip(self.context_weights[chosen_arm], 0, 1, out=self.context_weights[chosen_arm])
 
-#### Part II: Optimizers for cashback
 class SegmentedCashbackOptimizer:
     def __init__(self, initial_thresholds, min_threshold=1000, max_threshold=5000, adjustment_step=100):
         # Independent thresholds for different financial statuses
@@ -70,3 +69,4 @@ class SegmentedCashbackOptimizer:
 
         self.thresholds[financial_status] = new_threshold
         return new_threshold
+
