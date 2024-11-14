@@ -1,5 +1,3 @@
-import pandas as pd
-
 class EarlyWarningSystem:
     def __init__(self, churn_status_threshold=1, financial_status_threshold=4.0, loyalty_threshold=3):
         self.churn_status_threshold = churn_status_threshold
