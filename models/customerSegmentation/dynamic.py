@@ -381,15 +381,15 @@ class Segmentation:
         loyalty = row['Loyalty_Category']
 
         if financial_status == 'Low' and loyalty == 'Low':
-            return 'Low Financial status, Low Loyalty'
+            return 'Minimal Engagers'
         elif financial_status == 'High' and loyalty == 'High':
-            return 'High Financial status, High Loyalty'
+            return 'Minimal Engagers'
         elif financial_status == 'High' and loyalty in ['Moderate', 'Low']:
-            return 'High Financial status, Low or Moderate Loyalty'
+            return 'Affluent Observers'
         elif financial_status in ['Moderate', 'Low'] and loyalty == 'High':
-            return 'Low or Moderate Financial status, High Loyalty'
+            return 'Loyal Savers'
         else:
-            return 'Moderate or Low Financial status, Moderate or Low Loyalty'
+            return 'Casual Browsers'
 
     def perform_segmentation(self):
         """
