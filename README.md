@@ -37,9 +37,9 @@ Qn 2: run `qn2.ipynb`
 Qn 3: run `qn3.ipynb`
 
 ##### Additional Questions
-Qn 1: run qn1(optional).ipynb
-Qn 2: run qn2(optional).ipynb
-Qn 3: run qn3(optional).ipynb 
+Qn 1: run `qn1(optional).ipynb`  
+Qn 2: run `qn2(optional).ipynb`  
+Qn 3: run `qn3(optional).ipynb` 
 
 #### Subgroup B:
 *All the files are in `group_tasks/Subgroup B`*  
