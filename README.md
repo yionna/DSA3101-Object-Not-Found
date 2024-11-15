@@ -173,6 +173,40 @@ Qn 3: run  `extra_qn3_with_click.py`
   The data is used to obtain banking product information.<br>
 
 ## Instructions for building and running the Docker containers
+1. **Build the Docker Image**
+
+   From within the project directory, build the Docker image using the following command:
+
+   ```bash
+   docker build -t dsa3101:1.0 .
+   ```
+2. **Run the Docker Container**
+
+   Once the image is built, you can run the Docker container with an interactive session:
+
+   ```bash
+   docker run -it dsa3101:1.0 /bin/bash
+   ```
+   This command will start an interactive session within the container, allowing you to run code and access the environment directly.
+3. **Activate the Conda Environment**
+
+   Activate the environment:
+
+   ```bash
+   conda activate dsa3101_env
+   ```
+
+4. **Run the Python Script**
+
+   With the environment activated, you can now run your script. For example:
+
+   ```bash
+   python main.py
+   ```
+
+   This command will execute `main.py` in the current environment. Make sure that `main.py` is within the container’s working directory.
+
+
 
 ## API documentation
 ### Data:
