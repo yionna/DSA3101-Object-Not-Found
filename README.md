@@ -63,7 +63,13 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   ├── Campaign_data.ipynb
 │   ├── Demographic_data_without_result.ipynb
 │   └── Product_data.ipynb
-├── data                          
+├── data
+│   ├── Dashboard
+│   │   ├── Dashboard_1_KPI.pbix
+│   │   ├── Dashboard_1_KPI.png
+│   │   ├── Dashboard_2_Tracking_Traffic.pbix
+│   │   ├── Dashboard_2_Tracking_Traffic.pdf
+│   │   └── dashboard.py                     # A demonstration of AI marketing
 │   ├── predictions                          # For API
 │   │   ├── A_BQ3.csv                        # For Churn Likelihood
 │   │   ├── A_BQ3_pt2.csv                    # For risk of churning
