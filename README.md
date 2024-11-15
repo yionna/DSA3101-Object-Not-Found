@@ -94,7 +94,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │       └── credit_score.csv
 ├── sql                                      # SQL scripts for data extraction and transformation
 │   ├── setup_bank_db.sql
-│   └── setup_bank_db.sql
+│   └── relational_data_bases.png            # Image of our relational database.
 ├── API                                      # Simple API (using Flask or FastAPI) to serve model predictions and key insights
 │   ├── static
 │   │   ├── styles_customer_info.css
@@ -127,7 +127,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │       ├── CustomerDataGenerator.py
 │       ├── dynamic.py
 │       └── static.py
-├── group tasks
+├── group_tasks
 │   ├── Subgroup A
 │   │   ├── qn1.ipynb
 │   │   ├── qn2.ipynb
