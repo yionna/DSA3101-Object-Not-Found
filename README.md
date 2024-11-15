@@ -97,7 +97,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │       ├── banking_product_services.csv
 │       ├── botswana_bank_customer_churn.csv
 │       ├── campaign_data.csv
-│       └── credit_score.csv
+│       ├── credit_score.csv
 │       └── digital_marketing_campaign_dataset.csv
 ├── sql                                      # SQL scripts for data extraction and transformation
 │   ├── setup_bank_db.sql
