@@ -125,7 +125,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │       ├── CustomerDataGenerator.py
 │       ├── dynamic.py
 │       └── static.py
-├── group tasks/
+├── group tasks
 │   ├── Subgroup A
 │   │   ├── qn1.ipynb
 │   │   ├── qn2.ipynb
