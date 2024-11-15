@@ -41,6 +41,7 @@
     color: white; 
 }
 
+
 /* Main Content Styles */
 .container {
     margin-left: 250px; /* This ensures the content does not overlap the sidebar */
@@ -58,8 +59,14 @@ body {
     padding: 20px;
 }
 
-.content h1, h3, p {
-    text-align: center;
-    padding-top: 10px;
-    margin-top: 10px;
+.image-gallery {
+    text-align: center; 
+    padding: 20px;
 }
+
+.image {
+    display: block; 
+    max-width: 100%; 
+    margin: 20px auto;
+}
+

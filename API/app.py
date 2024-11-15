@@ -35,7 +35,12 @@ def retrieve_information():
 
 @app.route('/display', methods=['GET'])
 def display():
-    return render_template('display.html')
+    IMG_FOLDER = "static/subgroupA_visuals"
+    app.config["UPLOAD_FOLDER"] = IMG_FOLDER
+
+    images = [os.path.join(app.config["UPLOAD_FOLDER"], image) for image in os.listdir(IMG_FOLDER) if 'png' in image]
+
+    return render_template('display.html', images=images)
 
 
 if __name__ == '__main__':

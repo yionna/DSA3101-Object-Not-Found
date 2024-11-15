@@ -33,7 +33,7 @@
     text-decoration: none;
     display: block;
     padding: 10px 25px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for color changes */
 }
 
 .sidebar ul li a:hover {
@@ -48,12 +48,7 @@
 }
 
 .content {
-    padding: 20px;
-}
-
-h1, h2, p, ul, table {
-    margin: 20px auto;
-    color: #333;
+    padding: 30px; /* Adjusting Insights position */
 }
 
 body {
@@ -63,26 +58,30 @@ body {
     padding: 20px;
 }
 
-h1 {
+p, table {
+    color: #333;
+    margin: 20px auto;
+}
+
+.container h1 {
     text-align: center;
 }
 
-p, ul {
-    text-align: left;
-    padding-left: 200px;
+.container p, ul {
     max-width: 500px;
-    margin-bottom: 40px;
-
 }
 
-p {
+.container p {
+    text-align: center;
     font-size: 16px;
-    margin: 0 auto;
-    padding: 10px;
+    padding: 5px;
     line-height: 1.6;
+    margin-bottom: 10px;
 }
 
-ul {
+.container ul {
+    text-align: left;
+    margin: 50px auto;
     font-size: 15px;
     color: #494747; 
     list-style-position: inside;
@@ -130,12 +129,10 @@ input[type="submit"]:hover {
     background-color: #0440a8;
 }
 
-h2 {
+.container h3 {
     font-size: 20px;
-    margin: 30px auto;
-    margin-top: 100px;
     margin-left: 50px;
-    
+    margin-top: 100px;
 }
 
 .table-container {
@@ -155,7 +152,6 @@ table {
 }
 
 th, td {
-    
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
