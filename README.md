@@ -1,5 +1,6 @@
 # DSA3101-Object-Not-Found: Machine Learning for Personalised Marketing Campaigns
-As clients become more digitally savvy, marketing efforts in the banking industry have shifted away from traditional methods like mass media marketing to digital marketing. Current digital marketing efforts rely mostly on broad demographic segments and basic metrics, underutilising available consumer data. Our team’s marketing specialists have thus asked for our expertise in identifying the relevant segments to target their marketing campaign and come up with strategies to address low engagement with customers. Our team and data scientists have thus proposed creating more personalised marketing strategies that are tailored to customers’ preferences, behaviours and needs. Overall, the aim of our project is to omprove customer engagement, increase conversion rates, and enable data-driven decision-making in marketing strategies.
+
+As clients become more digitally savvy, marketing efforts in the banking industry have shifted away from traditional methods like mass media marketing to digital marketing. Current digital marketing efforts rely mostly on broad demographic segments and basic metrics, underutilising available consumer data. Our team’s marketing specialists have thus asked for our expertise in identifying the relevant segments to target their marketing campaign and come up with strategies to address low engagement with customers. Our team and data scientists have thus proposed creating more personalised marketing strategies that are tailored to customers’ preferences, behaviours and needs. Overall, our project aims to improve customer engagement, increase conversion rates, and enable data-driven decision-making in marketing strategies.
 
 ## Project Overview
 Marketing specialists on our team have expressed the need for a more targeted campaign since the current more "traditional" marketing methods rely mostly on broad demographic segments and basic metrics, not fully utilising the wealth of available customer data. This causes campaigns not to consider more nuanced features like customer preferences, behaviours, and needs.
@@ -111,11 +112,12 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   │   ├── customer_information.html
 │   │   └── index.html
 │   ├── app.py
-│   └── dashboard.py 
-├── requirements.txt                         # All dependencies
+│   └── dashboard.py
 ├── models                                   # For all functions, classes, and modules
 │   ├── AIMarketing
 │   │   └── marketing.py
+│   ├── FeedbackAnalysis
+│   │   └── FeedbackAnalysis.py
 │   ├── DynamicCampaign
 │   │   └── DynamicCampaignSystem.py
 │   ├── RecommendationSystem
@@ -133,18 +135,21 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   │   ├── qn2 (optional).ipynb
 │   │   └── qn3 (optional).ipynb
 │   └── Subgroup B
+│       ├── extra_qn1.py
+│       ├── extra_qn2.ipynb
+│       ├── extra_qn2.py
+│       ├── extra_qn3.py
+│       ├── extra_qn3_with_click.py
 │       ├── qn1.ipynb
 │       ├── qn2.ipynb
-│       ├── qn3.ipynb
-│       ├── extra_qn2.ipynb
-│       ├── extra_qn3_with_click.ipynb
-│       └── extra_qn1.py
+│       └── qn3.ipynb
 ├── main.py                                  # Orchestrates the entire data pipeline and analysis process
 ├── Exploratory_Data_Analysis.ipynb          # Exploratory data analysis
 ├── config.py                                # For all configuration parameters
 ├── utils.py                                 # For utility functions used across multiple scripts
 ├── dockerfile                               # Defines the Docker image setup using a Conda base image, installing dependencies from `environment.yml`
 ├── environment.yml                          # Lists required packages for a reproducible Conda environment within Docker
+├── requirements.txt                         # All dependencies
 └── README.md                                # Project documentation
 ```
 
