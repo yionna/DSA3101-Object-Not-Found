@@ -57,7 +57,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 
 ├── data_cleaning                            # Cleaning the original dataset
 │   ├── BankChurners_cleaning.py
-├──                       # Exploratory data analysis
+├── Exploratory_Data_Analysis.ipynb                      # Exploratory data analysis
 ├── data_synthesis                           # Adding rows and columns to main data
 │   ├── BankChurners_more.ipynb              # Synthesise more rows into `BankChurners_cleaned.csv`
 │   ├── banking_behaviour_preference.ipynb   
