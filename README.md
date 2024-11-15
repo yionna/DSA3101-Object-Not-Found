@@ -29,7 +29,6 @@ There will be a lack of personalisation as customers will receive generic, one-s
 2) run `Demographic_data_without_result.ipynb` to get `demographic.csv` in `data/processed`
 
 
-
 ### Group Tasks
 #### Subgroup A:
 *All the files are in `group_tasks/Subgroup A`*  
@@ -41,7 +40,6 @@ Qn 3: run `qn3.ipynb`
 Qn 1: run qn1(optional).ipynb
 Qn 2: run qn2(optional).ipynb
 Qn 3: run qn3(optional).ipynb 
-
 
 #### Subgroup B:
 *All the files are in `group_tasks/Subgroup B`*  
@@ -95,20 +93,20 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   │   ├── botswana_bank_customer_churn.csv
 │   │   ├── campaign_data.csv
 │   │   └── credit_score.csv
-│   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
-│       ├── output1.png
-│       ├── output2.png
-│       ├── output3.png
-│       ├── output4.png
-│       ├── output5.png
-│       └── output6.png
 ├── sql                                      # SQL scripts for data extraction
 and transformation
 │   └── setup_bank_db.sql
 ├── API                                      # Simple API (using Flask or FastAPI) to serve model predictions and key insights
 │   ├── static
 │   │   ├── styles_customer_info.css
-│   │   └── styles_index.css
+│   │   └── styles_index.
+│   │   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
+│   │       ├── output1.png
+│   │       ├── output2.png
+│   │       ├── output3.png
+│   │       ├── output4.png
+│   │       ├── output5.png
+│   │       └── output6.png
 │   ├── templates
 │   │   ├── customer_information.html
 │   │   └── index.html
@@ -152,24 +150,27 @@ and transformation
 
 ## Data sources and any necessary data preparation steps
 ### Data sources:
-- `data/BankChurners.csv`  
+- `data/raw/BankChurners.csv`  
   link: https://www.kaggle.com/datasets/imanemag/bankchurnerscsv  
   Main dataset  
-- `data/botswana_bank_customer_churn.csv`  
+- `data/raw/botswana_bank_customer_churn.csv`  
   link: https://www.kaggle.com/datasets/sandiledesmondmfazi/bank-customer-churn  
   To get digital engagement data  
-- `data/User churn.csv`  
+- `data/raw/User churn.csv`  
   link: https://www.kaggle.com/datasets/mikhail1681/user-churn<br>
   To get the variables that are related to digital engagements.<br>
-- `data/credit_score.csv`<br>
+- `data/raw/credit_score.csv`<br>
   link: https://www.kaggle.com/datasets/conorsully1/credit-score?resource=download<br>
   To get the `Savings` variable that includes savings outside the bank.<br>
-- `data/campaign_data.csv`<br>
+- `data/raw/campaign_data.csv`<br>
   link: https://www.kaggle.com/datasets/prakharrathi25/banking-dataset-marketing-targets?select=test.csv<br>
   The training data is used since it was much larger than the test data (randomly selected rows from training data).<br>
 - `data/raw/bank_reviews3.csv`<br>
   link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
   The data is used as a sample dataset for showcasing the functions of the NLP pipeline.<br>
+- `data/raw/banking_product_services.csv`<br>
+  link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
+  The data is used to obtain banking product information.<br>
 
 ## Instructions for building and running the Docker containers
 
