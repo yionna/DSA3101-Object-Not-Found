@@ -9,7 +9,7 @@ import numpy as np
 app = dash.Dash(__name__)
 
 # Simulate generating multiple sets of customer campaign data
-np.random.seed(42)
+np.random.seed(3101)
 n_customers = 1000
 n_iterations = 5  # Define the number of data sets
 

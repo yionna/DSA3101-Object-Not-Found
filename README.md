@@ -26,6 +26,8 @@ There will be a lack of personalisation as customers will receive generic, one-s
 
 #### For Subgroup B:
 1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
+2) run `Demographic_data_without_result.ipynb` to get `demographic.csv` in `data/processed`
+
 
 
 ### Group Tasks
@@ -48,9 +50,9 @@ Qn 2: run `qn2.ipynb`
 Qn 3: run `qn2.ipynb`
 
 #### Additional Questions
-Qn 1: run  
-Qn 2: run  
-Qn 3: run  
+Qn 1: run  `extra_qn1.py`
+Qn 2: run  `extra_qn2.ipynb`  
+Qn 3: run  `extra_qn3_with_click.py`
 
 ## Repository structure
 ```
@@ -62,20 +64,21 @@ Qn 3: run
 │   ├── BankChurners_more.ipynb              # Synthesise more rows into `BankChurners_cleaned.csv`
 │   ├── banking_behaviour_preference.ipynb   
 │   ├── Campaign_data.ipynb
+│   ├── Demographic_data_without_result.ipynb
 │   └── Product_data.ipynb
-├── data_engineering
-│   ├── campaign_log.py
 ├── data/                          
 │   ├── predictions                          # For API
 │   │   ├── A_BQ3.csv                        # For Churn Likelihood
 │   │   ├── A_BQ3_pt2.csv                    # For risk of churning
 │   │   ├── BQ1.csv
+│   │   ├── BQ2.csv                          # For Dynamic Campaign
 │   │   └── segementation_result_static.csv
 │   ├── processed                            # Processed Data
 │   │   ├── BankChurners_cleaned.csv
 │   │   ├── BankChurners_more.csv
 │   │   ├── Campaign.csv
 │   │   ├── Compaign_metrics.csv
+│   │   ├── demographic.csv
 │   │   ├── banking_behaviour_preference.csv
 │   │   ├── banking_behaviour_preference_original.csv
 │   │   ├── income_category_mapping.json
@@ -115,12 +118,8 @@ and transformation
 ├── models                                   # For all functions, classes, and modules
 │   ├── AIMarketing
 │   │   └── marketing.py
-│   ├── CampaignUpdate
-│   │   └── UpdateCampaign.py
 │   ├── DynamicCampaign
 │   │   └── DynamicCampaignSystem.py
-│   ├── EarlyWarningSystem
-│   │   └── EarlyWarningSystem.py
 │   ├── RecommendationSystem
 │   │   └── recommendationsystem.py
 │   └── customerSegmentation
@@ -141,18 +140,25 @@ and transformation
 │       ├── qn2.ipynb
 │       ├── qn3.ipynb
 │       ├── extra_qn2.ipynb
-│       └──
+│       ├── extra_qn3_with_click.ipynb
+│       └── extra_qn1.py
 ├── main.py                                  # Orchestrates the entire data pipeline and analysis process
 ├── config.py                                # For all configuration parameters
 ├── utils.py                                 # For utility functions used across multiple scripts
+├── dockerfile                               # Defines the Docker image setup using a Conda base image, installing dependencies from `environment.yml`
+├── environment.yml                          # Lists required packages for a reproducible Conda environment within Docker
 └── README.md                                # Project documentation
 ```
 
 ## Data sources and any necessary data preparation steps
 ### Data sources:
-- `data/BankChurners.csv`
-- `data/botswana_bank_customer_churn.csv`
-- `data/User churn.csv`
+- `data/BankChurners.csv`  
+  link: https://www.kaggle.com/datasets/imanemag/bankchurnerscsv  
+  Main dataset  
+- `data/botswana_bank_customer_churn.csv`  
+  link: https://www.kaggle.com/datasets/sandiledesmondmfazi/bank-customer-churn  
+  To get digital engagement data  
+- `data/User churn.csv`  
   link: https://www.kaggle.com/datasets/mikhail1681/user-churn<br>
   To get the variables that are related to digital engagements.<br>
 - `data/credit_score.csv`<br>
