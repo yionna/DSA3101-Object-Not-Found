@@ -178,7 +178,9 @@ and transformation
 * From `group_tasks/Subgroup A/qn3(optional).ipynb`:
     * for customer churn likelihood: `data/predictions/A_BQ3.csv`
     * for risk of churning: `data/predictions/A_BQ3_pt2.csv`
-
+* From `group_tasks/Subgroup B/qn1.ipynb`:
+    * for recommendation system probabilities: `data/predictions/BQ1.csv`
+  
 ### Endpoints
 
 ### Request/Response formats
