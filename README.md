@@ -124,7 +124,6 @@ and transformation
 │       ├── CustomerDataGenerator.py
 │       ├── dynamic.py
 │       └── static.py
-├──                                          # Dockerfile to containerize the application
 ├── group tasks/
 │   ├── Subgroup A
 │   │   ├── qn1.ipynb
