@@ -181,7 +181,7 @@ Qn 3: run  `extra_qn3_with_click.py`
   link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
   The data is used as a sample dataset for showcasing the functions of the NLP pipeline.<br>
 - `data/raw/banking_product_services.csv`<br>
-  link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
+  link: https://www.kaggle.com/datasets/akhilups/insurance-product-purchase-prediction?resource=download<br>
   The data is used to obtain banking product information.<br>
 
 ## Instructions for building and running the Docker containers
