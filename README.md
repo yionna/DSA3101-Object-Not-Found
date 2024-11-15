@@ -29,7 +29,6 @@ There will be a lack of personalisation as customers will receive generic, one-s
 1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
 2) run `Demographic_data_without_result.ipynb` to get `demographic.csv` in `data/processed`
 
-
 ### Group Tasks
 #### Subgroup A:
 *All the files are in `group_tasks/Subgroup A`*  
@@ -86,21 +85,22 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   │   ├── segmentation_result_static.csv
 │   │   ├── segmentation_result_static_original.csv
 │   │   └── simulation_result.csv
-│   ├── raw                                  # Original Datasets
-│   │   ├── BankChurners.csv
-│   │   ├── User churn.csv
-│   │   ├── bank_reviews3.csv
-│   │   ├── banking_product_services.csv
-│   │   ├── botswana_bank_customer_churn.csv
-│   │   ├── campaign_data.csv
-│   │   └── credit_score.csv
-├── sql                                      # SQL scripts for data extraction
-and transformation
+│   └── raw                                  # Original Datasets
+│       ├── BankChurners.csv
+│       ├── User churn.csv
+│       ├── bank_reviews3.csv
+│       ├── banking_product_services.csv
+│       ├── botswana_bank_customer_churn.csv
+│       ├── campaign_data.csv
+│       └── credit_score.csv
+├── sql                                      # SQL scripts for data extraction and transformation
+│   ├── setup_bank_db.sql
 │   └── setup_bank_db.sql
 ├── API                                      # Simple API (using Flask or FastAPI) to serve model predictions and key insights
 │   ├── static
 │   │   ├── styles_customer_info.css
-│   │   └── styles_index.
+│   │   ├── styles_display.css
+│   │   ├── styles_index.css
 │   │   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
 │   │       ├── output1.png
 │   │       ├── output2.png
