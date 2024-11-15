@@ -184,6 +184,9 @@ Qn 3: run  `extra_qn3_with_click.py`
 - `data/raw/banking_product_services.csv`<br>
   link: https://www.kaggle.com/datasets/akhilups/insurance-product-purchase-prediction?resource=download<br>
   The data is used to obtain banking product information.<br>
+- `data/raw/digital_marketing_campaign_dataset.csv`<br>
+  link: https://www.kaggle.com/datasets/akhilups/insurance-product-purchase-prediction?resource=download<br>
+  The data is used to obtain digital marketing campaign information.<br>
 
 ## Instructions for building and running the Docker containers
 1. **Build the Docker Image**
