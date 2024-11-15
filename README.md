@@ -152,13 +152,13 @@ and transformation
 
 ## Data sources and any necessary data preparation steps
 ### Data sources:
-- data/BankChurners.csv
-  link: https://www.kaggle.com/datasets/imanemag/bankchurnerscsv
+- `data/BankChurners.csv`  
+  link: https://www.kaggle.com/datasets/imanemag/bankchurnerscsv  
   Main dataset  
-- data/botswana_bank_customer_churn.csv
-  link: https://www.kaggle.com/datasets/sandiledesmondmfazi/bank-customer-churn
+- `data/botswana_bank_customer_churn.csv`  
+  link: https://www.kaggle.com/datasets/sandiledesmondmfazi/bank-customer-churn  
   To get digital engagement data  
-- `data/User churn.csv`
+- `data/User churn.csv`  
   link: https://www.kaggle.com/datasets/mikhail1681/user-churn<br>
   To get the variables that are related to digital engagements.<br>
 - `data/credit_score.csv`<br>
