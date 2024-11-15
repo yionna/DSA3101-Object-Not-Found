@@ -64,7 +64,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   ├── Campaign_data.ipynb
 │   ├── Demographic_data_without_result.ipynb
 │   └── Product_data.ipynb
-├── data/                          
+├── data                          
 │   ├── predictions                          # For API
 │   │   ├── A_BQ3.csv                        # For Churn Likelihood
 │   │   ├── A_BQ3_pt2.csv                    # For risk of churning
