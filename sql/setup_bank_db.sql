@@ -42,31 +42,6 @@ CREATE TABLE IF NOT EXISTS banking_behaviour_preference (
     PaymentMethod TINYINT                            -- Payment method (encoded as integers, e.g., 2 = Credit Card)
 );
 
--- This is a join table between banking_behavior and bank_churners
--- In reality, this demographic shall be separated as demographic(reference to bank_churners) and banking_behaviors
--- Table: Customer_Demographics
-CREATE TABLE IF NOT EXISTS Customer_Demographics (
-    Churn TINYINT,                                -- 1 = Existing, 0 = AttritedCLIENTNUM INT PRIMARY KEY,                            -- Unique identifier for each customer
-    Customer_Age INT NOT NULL,                            -- Age of the customer
-    Gender TINYINT CHECK (Gender IN (0, 1)),              -- 0 = Female, 1 = Male
-    Dependent_count INT,                                  -- Number of dependents
-    Education_Level TINYINT CHECK (Education_Level BETWEEN 1 AND 5), -- Example: 1 = High School, 2 = Graduate, etc.
-    Marital_Status TINYINT CHECK (Marital_Status BETWEEN 1 AND 3),   -- Example: 1 = Married, 2 = Single, etc.
-    Income_Category TINYINT CHECK (Income_Category BETWEEN 1 AND 5), -- Income bracket as categories
-    Total_Trans_Count INT,                                 -- Total count of transactions
-    Total_Trans_Amt FLOAT,                                 -- Total transaction amount for the customer
-    Avg_Utilization_Ratio FLOAT,                           -- Average credit utilization ratio
-    Savings FLOAT,                                         -- Savings balance of the customer
-    Balance FLOAT,                                         -- Current account balance
-    Credit_Score INT,                                      -- Credit score of the customer
-    Outstanding_Loans FLOAT,                               -- Total outstanding loans
-    Digital_Capability BOOLEAN,                            -- Indicates if the customer uses digital services (1 = Yes, 0 = No)
-    Loyalty VARCHAR(50),                                   -- Loyalty category
-    Financial_Status VARCHAR(50),                          -- Financial status of the customer
-    Segment VARCHAR(50)                                  -- Segment type for the customer
-);
-
-
 -- Table: Transaction_Data
 CREATE TABLE IF NOT EXISTS Transaction_Data (
     Transaction_ID INTEGER PRIMARY KEY AUTO_INCREMENT,    -- Unique identifier for each transaction

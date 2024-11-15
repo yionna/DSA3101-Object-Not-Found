@@ -1,3 +1,7 @@
+# pip install dash
+# this an example how bank analyst can access real-time data regarding customer preference in marketing message
+# run by `python path`
+
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
