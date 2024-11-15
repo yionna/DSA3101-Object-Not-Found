@@ -12,6 +12,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 - Python 3.8+
 - Docker
 - Other dependencies listed in ´requirements.txt´
+- `libomp` (required for XGBoost on macOS)
 
 ### Data Preparation
 1) run `BankChurners_cleaning.ipynb` in `data_cleaning` to get `BankChurners_cleaned.csv` in `data/processed`
