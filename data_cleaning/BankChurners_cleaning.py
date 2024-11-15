@@ -1,7 +1,9 @@
 import pandas as pd
+import json
+
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
-import json
+
 
 ##### This script will clean the BankChurners.csv file and save it as BandChuners_cleaning.csv in data/processed/
 ##### Note that the working directory is assumed to be where this file is found.

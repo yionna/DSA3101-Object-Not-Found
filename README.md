@@ -1,5 +1,5 @@
 # DSA3101-Object-Not-Found: Machine Learning for Personalised Marketing Campaigns
-Marketing efforts in the banking industry have shifted away from traditional methods like mass media marketing to digital marketing, as clients become more digitally savvy. Current digital marketing efforts rely mostly on broad demographic segments and basic metrics, underutilising available consumer data. Our team’s marketing specialists have thus asked for our expertise in identifying the relevant segments to target their marketing campaign and come up with strategies to address low engagement with customers. Our team and data scientists have thus proposed creating more personalised marketing strategies that are tailored to customers’ preferences, behaviours and needs.
+As clients become more digitally savvy, marketing efforts in the banking industry have shifted away from traditional methods like mass media marketing to digital marketing. Current digital marketing efforts rely mostly on broad demographic segments and basic metrics, underutilising available consumer data. Our team’s marketing specialists have thus asked for our expertise in identifying the relevant segments to target their marketing campaign and come up with strategies to address low engagement with customers. Our team and data scientists have thus proposed creating more personalised marketing strategies that are tailored to customers’ preferences, behaviours and needs. Overall, the aim of our project is to omprove customer engagement, increase conversion rates, and enable data-driven decision-making in marketing strategies.
 
 ## Project Overview
 Marketing specialists on our team have expressed the need for a more targeted campaign since the current more "traditional" marketing methods rely mostly on broad demographic segments and basic metrics, not fully utilising the wealth of available customer data. This causes campaigns not to consider more nuanced features like customer preferences, behaviours, and needs.
@@ -12,6 +12,7 @@ There will be a lack of personalisation as customers will receive generic, one-s
 - Python 3.8+
 - Docker
 - Other dependencies listed in ´requirements.txt´
+- `libomp` (required for XGBoost on macOS)
 
 ### Data Preparation
 1) run `BankChurners_cleaning.ipynb` in `data_cleaning` to get `BankChurners_cleaned.csv` in `data/processed`
@@ -28,8 +29,6 @@ There will be a lack of personalisation as customers will receive generic, one-s
 1) run `Product_data` to get `recommendation_system_data.csv` in `data/processed`
 2) run `Demographic_data_without_result.ipynb` to get `demographic.csv` in `data/processed`
 
-
-
 ### Group Tasks
 #### Subgroup A:
 *All the files are in `group_tasks/Subgroup A`*  
@@ -41,7 +40,6 @@ Qn 3: run `qn3.ipynb`
 Qn 1: run qn1(optional).ipynb
 Qn 2: run qn2(optional).ipynb
 Qn 3: run qn3(optional).ipynb 
-
 
 #### Subgroup B:
 *All the files are in `group_tasks/Subgroup B`*  
@@ -59,14 +57,14 @@ Qn 3: run  `extra_qn3_with_click.py`
 
 ├── data_cleaning                            # Cleaning the original dataset
 │   ├── BankChurners_cleaning.py
-├──                       # Exploratory data analysis
+├── Exploratory_Data_Analysis.ipynb                      # Exploratory data analysis
 ├── data_synthesis                           # Adding rows and columns to main data
 │   ├── BankChurners_more.ipynb              # Synthesise more rows into `BankChurners_cleaned.csv`
 │   ├── banking_behaviour_preference.ipynb   
 │   ├── Campaign_data.ipynb
 │   ├── Demographic_data_without_result.ipynb
 │   └── Product_data.ipynb
-├── data/                          
+├── data                          
 │   ├── predictions                          # For API
 │   │   ├── A_BQ3.csv                        # For Churn Likelihood
 │   │   ├── A_BQ3_pt2.csv                    # For risk of churning
@@ -87,28 +85,29 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   │   ├── segmentation_result_static.csv
 │   │   ├── segmentation_result_static_original.csv
 │   │   └── simulation_result.csv
-│   ├── raw                                  # Original Datasets
-│   │   ├── BankChurners.csv
-│   │   ├── User churn.csv
-│   │   ├── bank_reviews3.csv
-│   │   ├── banking_product_services.csv
-│   │   ├── botswana_bank_customer_churn.csv
-│   │   ├── campaign_data.csv
-│   │   └── credit_score.csv
-│   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
-│       ├── output1.png
-│       ├── output2.png
-│       ├── output3.png
-│       ├── output4.png
-│       ├── output5.png
-│       └── output6.png
-├── sql                                      # SQL scripts for data extraction
-and transformation
+│   └── raw                                  # Original Datasets
+│       ├── BankChurners.csv
+│       ├── User churn.csv
+│       ├── bank_reviews3.csv
+│       ├── banking_product_services.csv
+│       ├── botswana_bank_customer_churn.csv
+│       ├── campaign_data.csv
+│       └── credit_score.csv
+├── sql                                      # SQL scripts for data extraction and transformation
+│   ├── setup_bank_db.sql
 │   └── setup_bank_db.sql
 ├── API                                      # Simple API (using Flask or FastAPI) to serve model predictions and key insights
 │   ├── static
 │   │   ├── styles_customer_info.css
-│   │   └── styles_index.css
+│   │   ├── styles_display.css
+│   │   ├── styles_index.css
+│   │   └── subgroupA_visuals                    # Visualisations for Subgroup A Question 3
+│   │       ├── output1.png
+│   │       ├── output2.png
+│   │       ├── output3.png
+│   │       ├── output4.png
+│   │       ├── output5.png
+│   │       └── output6.png
 │   ├── templates
 │   │   ├── customer_information.html
 │   │   └── index.html
@@ -126,7 +125,6 @@ and transformation
 │       ├── CustomerDataGenerator.py
 │       ├── dynamic.py
 │       └── static.py
-├──                                          # Dockerfile to containerize the application
 ├── group tasks/
 │   ├── Subgroup A
 │   │   ├── qn1.ipynb
@@ -152,33 +150,72 @@ and transformation
 
 ## Data sources and any necessary data preparation steps
 ### Data sources:
-- `data/BankChurners.csv`  
+- `data/raw/BankChurners.csv`  
   link: https://www.kaggle.com/datasets/imanemag/bankchurnerscsv  
   Main dataset  
-- `data/botswana_bank_customer_churn.csv`  
+- `data/raw/botswana_bank_customer_churn.csv`  
   link: https://www.kaggle.com/datasets/sandiledesmondmfazi/bank-customer-churn  
   To get digital engagement data  
-- `data/User churn.csv`  
+- `data/raw/User churn.csv`  
   link: https://www.kaggle.com/datasets/mikhail1681/user-churn<br>
   To get the variables that are related to digital engagements.<br>
-- `data/credit_score.csv`<br>
+- `data/raw/credit_score.csv`<br>
   link: https://www.kaggle.com/datasets/conorsully1/credit-score?resource=download<br>
   To get the `Savings` variable that includes savings outside the bank.<br>
-- `data/campaign_data.csv`<br>
+- `data/raw/campaign_data.csv`<br>
   link: https://www.kaggle.com/datasets/prakharrathi25/banking-dataset-marketing-targets?select=test.csv<br>
   The training data is used since it was much larger than the test data (randomly selected rows from training data).<br>
 - `data/raw/bank_reviews3.csv`<br>
   link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
   The data is used as a sample dataset for showcasing the functions of the NLP pipeline.<br>
+- `data/raw/banking_product_services.csv`<br>
+  link: https://www.kaggle.com/datasets/dhavalrupapara/banks-customer-reviews-dataset/data<br>
+  The data is used to obtain banking product information.<br>
 
 ## Instructions for building and running the Docker containers
+1. **Build the Docker Image**
+
+   From within the project directory, build the Docker image using the following command:
+
+   ```bash
+   docker build -t dsa3101:1.0 .
+   ```
+2. **Run the Docker Container**
+
+   Once the image is built, you can run the Docker container with an interactive session:
+
+   ```bash
+   docker run -it dsa3101:1.0 /bin/bash
+   ```
+   This command will start an interactive session within the container, allowing you to run code and access the environment directly.
+3. **Activate the Conda Environment**
+
+   Activate the environment:
+
+   ```bash
+   conda activate dsa3101_env
+   ```
+
+4. **Run the Python Script**
+
+   With the environment activated, you can now run your script. For example:
+
+   ```bash
+   python main.py
+   ```
+
+   This command will execute `main.py` in the current environment. Make sure that `main.py` is within the container’s working directory.
+
+
 
 ## API documentation
 ### Data:
 * From `group_tasks/Subgroup A/qn3(optional).ipynb`:
     * for customer churn likelihood: `data/predictions/A_BQ3.csv`
     * for risk of churning: `data/predictions/A_BQ3_pt2.csv`
-
+* From `group_tasks/Subgroup B/qn1.ipynb`:
+    * for recommendation system probabilities: `data/predictions/BQ1.csv`
+  
 ### Endpoints
 
 ### Request/Response formats

@@ -1,5 +1,6 @@
 import pandas as pd
-from models.customerSegmentation.static import *
+
+from models.customerSegmentation.static import CustomerSegmentation
 from models.RecommendationSystem.recommendationsystem import obtain_best_columns, model_train_test
 from models.DynamicCampaign.DynamicCampaignSystem import get_campaign
 
