@@ -56,8 +56,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 ```
 
 ├── data_cleaning                            # Cleaning the original dataset
-│   ├── BankChurners_cleaning.py
-├── Exploratory_Data_Analysis.ipynb                      # Exploratory data analysis
+│   └── BankChurners_cleaning.py
 ├── data_synthesis                           # Adding rows and columns to main data
 │   ├── BankChurners_more.ipynb              # Synthesise more rows into `BankChurners_cleaned.csv`
 │   ├── banking_behaviour_preference.ipynb   
@@ -68,7 +67,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │   ├── predictions                          # For API
 │   │   ├── A_BQ3.csv                        # For Churn Likelihood
 │   │   ├── A_BQ3_pt2.csv                    # For risk of churning
-│   │   ├── BQ1.csv
+│   │   ├── BQ1.csv                          # For product recommendation
 │   │   ├── BQ2.csv                          # For Dynamic Campaign
 │   │   └── segementation_result_static.csv
 │   ├── processed                            # Processed Data
@@ -141,6 +140,7 @@ Qn 3: run  `extra_qn3_with_click.py`
 │       ├── extra_qn3_with_click.ipynb
 │       └── extra_qn1.py
 ├── main.py                                  # Orchestrates the entire data pipeline and analysis process
+├── Exploratory_Data_Analysis.ipynb          # Exploratory data analysis
 ├── config.py                                # For all configuration parameters
 ├── utils.py                                 # For utility functions used across multiple scripts
 ├── dockerfile                               # Defines the Docker image setup using a Conda base image, installing dependencies from `environment.yml`
